@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion-2API — 自动注册</title>
+<link rel="stylesheet" href="/dashboard/static/shared.css?v=20261029c">
+
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<div class="dashboard-layout">
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Notion-2API</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item" href="/dashboard" aria-label="概览"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>概览</span></a>
+    <a class="nav-item" href="/dashboard/accounts" aria-label="账户"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>账户</span></a>
+    <a class="nav-item" href="/dashboard/logs" aria-label="日志"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>日志</span></a>
+    <a class="nav-item" href="/dashboard/analytics" aria-label="分析"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>分析</span></a>
+    <a class="nav-item" href="/dashboard/settings" aria-label="设置"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.54.76.9 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>设置</span></a>
+    <a class="nav-item active" href="/dashboard/auto-register" aria-label="自动注册"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="21" x2="12" y2="11"/></svg><span>自动注册</span></a>
+  </nav>
+  <div class="sidebar-footer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="sidebarUptime">—</span></div>
+</div>
+<main class="main-content" id="main-content">
+  <div class="page-header"><h1>自动注册</h1>
+    <div style="display:flex;gap:8px">
+      <a class="btn" href="/dashboard/settings">系统设置</a>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-item"><span class="status-label">进行中</span><span class="status-value" id="statusActive">0</span></div>
+    <div class="status-item"><span class="status-label">最大并发</span><span class="status-value" id="statusMax">3</span></div>
+    <div class="status-item"><span class="status-label">已注册</span><span class="status-value" id="statusTotal">0</span></div>
+    <div class="status-item"><span class="status-label">补号状态</span><span class="status-value" id="statusReplenish">—</span></div>
+    <div class="status-item"><span class="status-label">邮箱 Provider</span><span class="status-value" id="statusProvider">—</span></div>
+  </div>
+
+  <div class="concurrent-control">
+    <label>并发数</label>
+    <input type="number" id="concurrencyInput" min="1" max="20" value="3">
+    <button class="btn" onclick="updateConcurrency()">应用</button>
+    <span style="font-size:0.72rem;color:var(--text-secondary);margin-left:4px">(1-10)</span>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">注册新账户</span></div>
+    <div class="panel-body">
+      <div id="providerInfo" style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.6;background:var(--bg-elevated);padding:10px 14px;border-radius:var(--radius-sm)">
+        正在读取临时邮箱配置...
+      </div>
+      <div class="reg-controls">
+        <div id="domainRow" style="display:none">
+          <input type="text" class="input" id="domainInput" placeholder="临时邮箱域名" style="width:200px">
+        </div>
+        <button class="btn primary" id="registerBtn" onclick="startRegister()">注册 1 个</button>
+        <button class="btn" id="batchBtn" onclick="startBatch()">批量注册</button>
+        <input type="number" class="input" id="batchCount" min="1" max="20" value="3" style="flex:0 0 60px;text-align:center" title="批量数量">
+        <button class="btn danger" onclick="clearLogs()">清空日志</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title">注册出口节点</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn primary" onclick="openNodeEditor(null)">新增节点</button>
+        <button class="btn" onclick="batchNodeAction('enable')">批量启用</button>
+        <button class="btn" onclick="batchNodeAction('disable')">批量禁用</button>
+        <button class="btn danger" onclick="batchNodeAction('delete')">批量删除</button>
+        <button class="btn" onclick="resetNodes()">重置冷却</button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div id="nodeSummary" style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:10px">加载中...</div>
+      <div id="nodeTableWrap"><div class="empty-state" id="nodeEmpty">暂无节点</div></div>
+      <div class="pagination" id="nodePagination"></div>
+      <div id="nodeEditor" style="display:none;margin-top:12px;border-top:1px dashed var(--border);padding-top:12px">
+        <div style="font-weight:600;margin-bottom:10px" id="nodeEditorTitle">新增节点</div>
+        <div class="reg-controls">
+          <input type="text" class="input" id="nodeProxyInput" placeholder="代理地址 http://host:port / socks5://...（clash 模式填节点名）" style="flex:1 1 380px;min-width:260px">
+          <input type="text" class="input" id="nodeLabelInput" placeholder="备注名称（可选）" style="flex:0 0 200px">
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.8rem"><input type="checkbox" id="nodeEnabledInput" checked> 启用</label>
+          <button class="btn primary" onclick="saveNode()">保存</button>
+          <button class="btn" onclick="closeNodeEditor()">取消</button>
+        </div>
+        <div style="font-size:0.75rem;color:var(--text-secondary);margin-top:8px" id="nodeModeHint"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="log-panel">
+    <div class="log-header">
+      <span class="panel-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        注册日志
+      </span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <label class="auto-scroll-toggle"><input type="checkbox" id="autoScroll" checked> 自动滚动</label>
+        <span style="font-size:0.7rem;color:var(--text-secondary);font-family:var(--mono)" id="logCount">0 entries</span>
+      </div>
+    </div>
+    <div class="log-body" id="logBody"></div>
+  </div>
+</main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/dashboard/static/shared.js?v=20261029c"></script>
+<script>
+var lastLogCount = 0;
+var autoScrollEnabled = true;
+var currentProvider = 'emailnator';
+var currentDomain = '';
+var nodePage = 1;
+var nodePageSize = 8;
+var nodeData = null;
+var selectedNodes = {};
+var editingNodeId = null;
+
+function renderLogEntry(entry) {
+  var levelClass = entry.level || 'info';
+  var time = String(entry.timestamp || '').replace('T', ' ').slice(11, 19);
+  return '<div class="log-entry">' +
+    '<span class="log-time">' + escHtml(time) + '</span>' +
+    '<span class="log-level ' + escHtml(levelClass) + '">' + escHtml(levelClass) + '</span>' +
+    '<span class="log-task">' + escHtml(entry.task_id || '') + '</span>' +
+    '<span class="log-msg">' + escHtml(entry.message || '') + '</span>' +
+    '</div>';
+}
+
+async function loadLogs() {
+  try {
+    var resp = await fetch('/api/reg-logs?limit=500');
+    var data = await resp.json();
+    var entries = data.results || [];
+    if (entries.length === lastLogCount) return;
+    lastLogCount = entries.length;
+    var body = document.getElementById('logBody');
+    if (!entries.length) {
+      body.innerHTML = '<div style="padding:24px;text-align:center;color:var(--text-secondary)">暂无注册日志。注册/补号日志会持久化到 reg_logs.jsonl，重启服务后仍会保留。</div>';
+    } else {
+      body.innerHTML = entries.map(renderLogEntry).join('');
+    }
+    document.getElementById('logCount').textContent = entries.length + ' entries';
+    if (document.getElementById('autoScroll').checked) body.scrollTop = body.scrollHeight;
+  } catch (e) {}
+}
+
+async function loadStatus() {
+  try {
+    var resp = await fetch('/api/reg-status');
+    if (!resp.ok) return;
+    var data = await resp.json();
+    document.getElementById('statusActive').textContent = data.active_count;
+    document.getElementById('statusMax').textContent = data.max_concurrent;
+    document.getElementById('statusTotal').textContent = data.total_registered;
+    var replenish = document.getElementById('statusReplenish');
+    if (replenish) replenish.textContent = data.paused ? '暂停' : '运行';
+    var provider = document.getElementById('statusProvider');
+    if (provider) provider.textContent = data.provider || '—';
+    document.getElementById('concurrencyInput').value = data.max_concurrent;
+  } catch (e) {}
+}
+
+async function loadProviderConfig() {
+  try {
+    var settings = await apiFetch('/api/settings');
+    var current = settings.current || {};
+    currentProvider = current.TEMP_EMAIL_PROVIDER || 'emailnator';
+    currentDomain = current.TEMP_EMAIL_DOMAIN || current.AUTO_REPLENISH_DOMAIN || '';
+    var info = document.getElementById('providerInfo');
+    var domainRow = document.getElementById('domainRow');
+    var domainInput = document.getElementById('domainInput');
+    if (currentProvider === 'emailnator') {
+      info.innerHTML = '<b>EmailNator 模式：</b>服务端自动分配 <code>@googlemail.com</code> 地址，并通过 EmailNator API 收取验证码，<b>无需填写域名/Base/Admin</b>。' +
+        '邮箱 API 与代理等配置见「系统设置」。';
+      if (domainRow) domainRow.style.display = 'none';
+    } else {
+      info.innerHTML = '<b>cfmail 模式：</b>使用自建 cloudflare_temp_email 服务，需在「系统设置」配置 TEMP_EMAIL_BASE / TEMP_EMAIL_ADMIN_AUTH，域名填写下方（或使用系统设置中的默认域名）。';
+      if (domainRow) domainRow.style.display = 'block';
+      if (domainInput) domainInput.value = currentDomain;
+      if (domainInput && !domainInput.value) domainInput.value = current.AUTO_REPLENISH_DOMAIN || '';
+    }
+  } catch (e) {}
+}
+
+function domainForRegister() {
+  if (currentProvider === 'emailnator') return currentDomain || '';
+  var input = document.getElementById('domainInput');
+  return input && input.value ? input.value.trim() : (currentDomain || '');
+}
+
+async function startRegister() {
+  var domain = domainForRegister();
+  document.getElementById('registerBtn').disabled = true;
+  try {
+    var resp = await fetch('/api/auto-register', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({domain: domain})
+    });
+    var data = await resp.json();
+    if (resp.ok && data.success) showToast('已提交注册任务', 'success');
+    else showToast('注册失败: ' + (data.detail || '未知错误'), 'error');
+  } catch (e) { showToast('请求失败: ' + e.message, 'error'); }
+  loadStatus(); loadLogs();
+}
+
+async function startBatch() {
+  var domain = domainForRegister();
+  var count = parseInt(document.getElementById('batchCount').value, 10) || 3;
+  count = Math.max(1, Math.min(count, 20));
+  try {
+    var resp = await fetch('/api/auto-register', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({domain: domain, count: count})
+    });
+    var data = await resp.json();
+    if (data.success) showToast(data.message || '任务已提交', 'success');
+    else showToast('批量注册失败: ' + (data.detail || '未知'), 'error');
+  } catch (e) { showToast('请求失败: ' + e.message, 'error'); }
+  loadStatus(); loadLogs();
+}
+
+async function clearLogs() {
+  try {
+    await fetch('/api/reg-logs', {method: 'DELETE'});
+    lastLogCount = -1;
+    document.getElementById('logBody').innerHTML = '';
+    showToast('日志已清空', 'info');
+  } catch (e) { showToast('清空日志失败', 'error'); }
+}
+
+async function updateConcurrency() {
+  var val = parseInt(document.getElementById('concurrencyInput').value, 10);
+  if (isNaN(val) || val < 1 || val > 10) { showToast('并发数必须在 1-10 之间', 'error'); return; }
+  try {
+    await apiFetch('/api/reg-config', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({max_concurrent: val})});
+    showToast('并发数已更新为 ' + val, 'success');
+    loadStatus();
+  } catch (e) { showToast('更新失败', 'error'); }
+}
+
+function fmtNodeStatus(node) {
+  if (!node.enabled) return '已禁用';
+  if (node.cooldown_seconds > 0) {
+    if (node.cooldown_seconds < 60) return '冷却 ' + node.cooldown_seconds + 's';
+    return '冷却 ' + Math.ceil(node.cooldown_seconds / 60) + 'min';
+  }
+  var consecutive = node.consecutive_failures || 0;
+  var threshold = (nodeData && nodeData.failure_threshold) || 3;
+  if (consecutive > 0) return '可用（连败 ' + consecutive + '/' + threshold + '）';
+  return '可用';
+}
+
+function renderNodeTable() {
+  var wrap = document.getElementById('nodeTableWrap');
+  var empty = document.getElementById('nodeEmpty');
+  if (!nodeData || !(nodeData.nodes || []).length) {
+    wrap.innerHTML = '<div class="empty-state">暂无节点，点击「新增节点」添加注册出口。</div>';
+    renderNodePagination();
+    return;
+  }
+  var nodes = nodeData.nodes;
+  var allChecked = nodes.every(function(n) { return selectedNodes[n.id]; });
+  var html = '<table class="node-table"><thead><tr>' +
+    '<th style="width:28px"><input type="checkbox" ' + (allChecked ? 'checked' : '') + ' onclick="toggleSelectAll(this.checked)"></th>' +
+    '<th>节点</th><th style="width:110px">成功 / 失败</th><th style="width:110px">状态</th><th style="width:120px">最近失败类别</th><th style="width:170px">操作</th>' +
+    '</tr></thead><tbody>';
+  nodes.forEach(function(n) {
+    var badge = n.last_error_category ? '<span class="status-badge error">' + escHtml(n.last_error_category) + '</span>' : '—';
+    var proxy = n.proxy || '';
+    html += '<tr>' +
+      '<td><input type="checkbox" ' + (selectedNodes[n.id] ? 'checked' : '') + ' onchange="toggleNode(\'' + n.id + '\', this.checked)"></td>' +
+      '<td><div style="font-weight:600">' + escHtml(n.label || proxy) + '</div>' +
+        (n.label && n.label !== proxy ? '<div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-secondary);word-break:break-all">' + escHtml(proxy) + '</div>' : '') + '</td>' +
+      '<td style="font-family:var(--mono)">' + (n.successes || 0) + ' / ' + (n.failures || 0) + '</td>' +
+      '<td>' + escHtml(fmtNodeStatus(n)) + '</td>' +
+      '<td>' + badge + '</td>' +
+      '<td style="white-space:nowrap">' +
+        '<button class="btn" onclick="openNodeEditor(\'' + n.id + '\')">编辑</button> ' +
+        '<button class="btn" onclick="deleteNode(\'' + n.id + '\')">删除</button> ' +
+        '<button class="btn" onclick="toggleNodeEnabled(\'' + n.id + '\')">' + (n.enabled ? '停用' : '启用') + '</button>' +
+      '</td>' +
+    '</tr>';
+  });
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+  var summary = document.getElementById('nodeSummary');
+  if (summary) {
+    summary.textContent = '模式: ' + (nodeData.mode || 'proxy') + ' · 共 ' + (nodeData.total || 0) + ' 个节点 · 第 ' +
+      (nodeData.page || 1) + ' / ' + (nodeData.total_pages || 1) + ' 页' +
+      ((nodeData.paused || (nodeData.all_cooling && nodeData.mode === 'proxy')) ? ' · 补号暂停中' : '');
+  }
+  renderNodePagination();
+}
+
+function renderNodePagination() {
+  var el = document.getElementById('nodePagination');
+  if (!nodeData || (nodeData.total_pages || 1) <= 1) { el.innerHTML = ''; return; }
+  var total = nodeData.total_pages;
+  var current = nodeData.page;
+  var html = '<button class="page-btn" onclick="loadNodes(1)" ' + (current === 1 ? 'disabled' : '') + '>«</button>';
+  html += '<button class="page-btn" onclick="loadNodes(' + (current - 1) + ')" ' + (current === 1 ? 'disabled' : '') + '>‹</button>';
+  var start = Math.max(1, current - 2);
+  var end = Math.min(total, start + 4);
+  start = Math.max(1, end - 4);
+  if (start > 1) html += '<span class="page-ellipsis">…</span>';
+  for (var p = start; p <= end; p++) {
+    html += '<button class="page-btn ' + (p === current ? 'active' : '') + '" onclick="loadNodes(' + p + ')">' + p + '</button>';
+  }
+  if (end < total) html += '<span class="page-ellipsis">…</span>';
+  html += '<button class="page-btn" onclick="loadNodes(' + (current + 1) + ')" ' + (current === total ? 'disabled' : '') + '>›</button>';
+  html += '<button class="page-btn" onclick="loadNodes(' + total + ')" ' + (current === total ? 'disabled' : '') + '>»</button>';
+  el.innerHTML = html;
+}
+
+async function loadNodes(page) {
+  if (page) nodePage = page;
+  try {
+    var data = await apiFetch('/api/reg-nodes?page=' + nodePage + '&page_size=' + nodePageSize + '&_t=' + Date.now());
+    nodeData = data;
+    nodePage = data.page || 1;
+    renderNodeTable();
+    var hint = document.getElementById('nodeModeHint');
+    if (hint) hint.textContent = data.mode === 'clash'
+      ? 'clash 模式：节点填写 Clash 分组中的节点名；切换会影响全局出口，空闲后自动恢复原节点。'
+      : 'proxy 模式：节点填写代理地址（http/https/socks5）。注册流量只在这些代理中选择。';
+  } catch (e) {}
+}
+
+function toggleNode(id, checked) {
+  if (checked) selectedNodes[id] = true; else delete selectedNodes[id];
+  renderNodeTable();
+}
+
+function toggleSelectAll(checked) {
+  (nodeData.nodes || []).forEach(function(n) {
+    if (checked) selectedNodes[n.id] = true; else delete selectedNodes[n.id];
+  });
+  renderNodeTable();
+}
+
+function openNodeEditor(id) {
+  editingNodeId = id;
+  var editor = document.getElementById('nodeEditor');
+  editor.style.display = 'block';
+  document.getElementById('nodeEditorTitle').textContent = id ? '编辑节点' : '新增节点';
+  var node = null;
+  if (id) node = (nodeData.nodes || []).filter(function(n) { return n.id === id; })[0];
+  document.getElementById('nodeProxyInput').value = node ? node.proxy : '';
+  document.getElementById('nodeLabelInput').value = node ? (node.label || '') : '';
+  document.getElementById('nodeEnabledInput').checked = node ? !!node.enabled : true;
+  editor.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+}
+
+function closeNodeEditor() {
+  editingNodeId = null;
+  document.getElementById('nodeEditor').style.display = 'none';
+}
+
+async function saveNode() {
+  var proxy = document.getElementById('nodeProxyInput').value.trim();
+  var label = document.getElementById('nodeLabelInput').value.trim();
+  var enabled = document.getElementById('nodeEnabledInput').checked;
+  if (!proxy) { showToast('节点地址不能为空', 'error'); return; }
+  try {
+    if (editingNodeId) {
+      await apiFetch('/api/reg-nodes/' + editingNodeId, {method: 'PUT', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({proxy: proxy, label: label, enabled: enabled})});
+    } else {
+      await apiFetch('/api/reg-nodes', {method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({proxy: proxy, label: label, enabled: enabled})});
+    }
+    showToast('节点已保存', 'success');
+    closeNodeEditor();
+    loadNodes(nodePage);
+  } catch (e) { showToast('保存失败: ' + (e.message || e), 'error'); }
+}
+
+async function deleteNode(id) {
+  if (!confirm('删除该节点？不影响已注册账号。')) return;
+  try {
+    await apiFetch('/api/reg-nodes/' + id, {method: 'DELETE'});
+    delete selectedNodes[id];
+    showToast('节点已删除', 'success');
+    loadNodes(nodePage);
+  } catch (e) { showToast('删除失败', 'error'); }
+}
+
+async function toggleNodeEnabled(id) {
+  var node = (nodeData.nodes || []).filter(function(n) { return n.id === id; })[0];
+  if (!node) return;
+  try {
+    await apiFetch('/api/reg-nodes/' + id, {method: 'PUT', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({enabled: !node.enabled})});
+    loadNodes(nodePage);
+  } catch (e) { showToast('更新失败', 'error'); }
+}
+
+async function batchNodeAction(action) {
+  var ids = Object.keys(selectedNodes);
+  if (!ids.length) { showToast('请先勾选节点', 'info'); return; }
+  if (action === 'delete' && !confirm('删除选中的 ' + ids.length + ' 个节点？不影响已注册账号。')) return;
+  try {
+    var result = await apiFetch('/api/reg-nodes/batch', {method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({action: action, ids: ids})});
+    showToast('已处理 ' + (result.affected || 0) + ' 个节点', 'success');
+    selectedNodes = {};
+    loadNodes(1);
+  } catch (e) { showToast('批量操作失败', 'error'); }
+}
+
+async function resetNodes() {
+  try {
+    await apiFetch('/api/reg-nodes/reset', {method: 'POST'});
+    showToast('节点冷却与失败统计已重置', 'success');
+    loadNodes(nodePage);
+  } catch (e) { showToast('重置失败', 'error'); }
+}
+
+document.getElementById('autoScroll').addEventListener('change', function() { autoScrollEnabled = this.checked; });
+
+loadLogs();
+loadStatus();
+loadProviderConfig();
+loadNodes(1);
+setInterval(function() { loadLogs(); loadStatus(); }, 2000);
+setInterval(function() { if (!editingNodeId) loadNodes(); }, 15000);
+</script>
+</body>
+</html>

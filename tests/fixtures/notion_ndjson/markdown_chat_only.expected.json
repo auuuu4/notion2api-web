@@ -1,0 +1,15 @@
+{
+  "visible_text": "",
+  "final_text": "hello",
+  "record_map_text": "",
+  "saw_record_map": false,
+  "parsed_records": 1,
+  "thinking_chars": 0,
+  "unknown_op_count": 0,
+  "mismatch": null,
+  "quota": null,
+  "reducer_since_ms": null,
+  "native_extract": null,
+  "native_calls": null,
+  "provider_usage": null
+}

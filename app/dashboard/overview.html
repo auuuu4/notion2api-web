@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion-2API — 概览</title>
+<link rel="stylesheet" href="/dashboard/static/shared.css?v=20261029c">
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<div class="dashboard-layout">
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Notion-2API</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item active" href="/dashboard" aria-label="概览"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>概览</span></a>
+    <a class="nav-item" href="/dashboard/accounts" aria-label="账户"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>账户</span></a>
+    <a class="nav-item" href="/dashboard/logs" aria-label="日志"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>日志</span></a>
+    <a class="nav-item" href="/dashboard/analytics" aria-label="分析"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>分析</span></a>
+    <a class="nav-item" href="/dashboard/settings" aria-label="设置"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.54.76.9 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>设置</span></a>
+    <a class="nav-item" href="/dashboard/auto-register" aria-label="自动注册"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="21" x2="12" y2="11"/></svg><span>自动注册</span></a>
+  </nav>
+  <div class="sidebar-footer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="sidebarUptime">—</span></div>
+</div>
+<main class="main-content" id="main-content">
+  <div class="page-header">
+    <h1>仪表盘概览</h1>
+    <div><span style="font-family:var(--mono);font-size:0.78rem;color:var(--text-secondary)">运行时间: <span id="headerUptime">—</span></span></div>
+  </div>
+
+  <!-- Primary KPIs -->
+  <div class="kpi-grid kpi-grid-5">
+    <div class="kpi-card">
+      <span class="kpi-label">总账户数</span>
+      <span class="kpi-value" id="kpiTotalAccounts">—</span>
+      <span class="kpi-sub" id="kpiTotalAccountsSub"></span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">成功率</span>
+      <span class="kpi-value" id="kpiSuccessRate">—</span>
+      <span class="kpi-sub" id="kpiSuccessRateSub"></span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">平均延迟</span>
+      <span class="kpi-value" id="kpiLatency">—</span>
+      <span class="kpi-sub" id="kpiLatencySub"></span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">总请求数</span>
+      <span class="kpi-value" id="kpiRequests">—</span>
+      <div class="mini-bar" id="sparkline"></div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label" id="kpiQuotaLabel">可用额度</span>
+      <span class="kpi-value" id="kpiQuota">—</span>
+      <span class="kpi-sub" id="kpiQuotaSub"></span>
+    </div>
+  </div>
+
+  <!-- Model Quick View -->
+  <div class="quick-chart">
+    <div class="quick-chart-header">
+      <span class="quick-chart-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/></svg> 模型使用</span>
+      <a href="/dashboard/analytics" class="btn" style="font-size:0.68rem;padding:4px 10px">查看全部</a>
+    </div>
+    <div class="quick-chart-body" id="modelQuickView">
+      <div style="text-align:center;color:var(--text-secondary);font-size:0.82rem;padding:16px">加载中...</div>
+    </div>
+  </div>
+
+  <!-- Recent Logs -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title">最近日志</span>
+      <a href="/dashboard/logs" class="btn" style="font-size:0.68rem;padding:4px 10px">查看全部</a>
+    </div>
+    <div class="panel-body">
+      <table>
+        <thead><tr><th>时间</th><th>模型</th><th>预览</th><th>耗时</th><th>状态</th></tr></thead>
+        <tbody id="recentLogsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/dashboard/static/shared.js?v=20261029c"></script>
+<script>
+function fmtMs(ms) {
+  if (ms == null) return '—';
+  if (ms < 1000) return ms + 'ms';
+  return (ms / 1000).toFixed(1) + 's';
+}
+
+async function refresh() {
+  try {
+    var health = await apiFetch('/api/health');
+    var stats = await apiFetch('/api/stats');
+    var ov = stats.overview || {};
+
+    var uptimeStr = fmtDuration(health.uptime);
+    setText('headerUptime', uptimeStr);
+    setText('sidebarUptime', uptimeStr);
+
+    // KPIs
+    var totalAcc = health.accounts.total;
+    var activeAcc = health.accounts.available;
+    setText('kpiTotalAccounts', totalAcc);
+    var statusCounts = health.accounts.status_counts || {};
+    var estimatedReplies = health.accounts.estimated_replies_total;
+    setText('kpiTotalAccountsSub', activeAcc + ' 可调度 / ' + (totalAcc - activeAcc) + ' 不可用 · 预计剩余 ' + (estimatedReplies != null ? estimatedReplies : '—') + ' 条');
+    var disabledAcc = statusCounts.disabled || 0;
+    setText('kpiRequests', ov.total_requests || health.total_requests);
+    setText('kpiSuccessRate', (ov.success_rate || 0) + '%');
+    setText('kpiSuccessRateSub', (ov.success_count || 0) + ' 成功 / ' + (ov.error_count || 0) + ' 失败');
+    // Quota KPI
+    var accountsWithQuota = health.accounts.available_with_quota || 0;
+    var totalAcc = health.accounts.total || 0;
+    var qLimit = health.quota_limit || 0;
+    var totalRemaining = 0;
+    var totalUsed = 0;
+    var accounts = await apiFetch('/api/accounts');
+    accounts.forEach(function(a) {
+      totalUsed += (a.total_requests || 0);
+      if (qLimit > 0) totalRemaining += Math.max(0, qLimit - (a.total_requests || 0));
+    });
+    setText('kpiQuotaLabel', qLimit > 0 ? '可用额度' : '累计请求');
+    setText('kpiQuota', qLimit > 0 ? totalRemaining : totalUsed + ' 次');
+    setText('kpiQuotaSub', accountsWithQuota + ' 可用 / ' + disabledAcc + ' 禁用 / 预计剩余 ' + (estimatedReplies != null ? estimatedReplies : '—') + ' 条');
+    setText('kpiLatency', fmtMs(ov.avg_duration_ms));
+    var models = stats.models || [];
+    var p95 = models.length > 0 ? Math.max.apply(null, models.map(function(m) { return m.p95_duration_ms || 0; })) : 0;
+    setText('kpiLatencySub', 'P95: ' + fmtMs(p95));
+
+    // Sparkline (last 24h hourly)
+    var hourly = stats.hourly || {};
+    var counts = hourly.counts || [];
+    var maxC = Math.max.apply(null, counts.concat([1]));
+    var spark = document.getElementById('sparkline');
+    spark.innerHTML = '';
+    for (var i = 0; i < 24; i++) {
+      var h = Math.round((counts[i] || 0) / maxC * 28);
+      spark.innerHTML += '<div class="bar" style="height:' + Math.max(h, 2) + 'px"></div>';
+    }
+
+    // Model quick view (top 5)
+    var modelDiv = document.getElementById('modelQuickView');
+    if (models.length === 0) {
+      modelDiv.innerHTML = '<div style="text-align:center;color:var(--text-secondary);font-size:0.82rem;padding:16px">暂无请求</div>';
+    } else {
+      var totalReqs = models.reduce(function(s, m) { return s + m.requests; }, 0);
+      var html = '';
+      var top5 = models.slice(0, 5);
+      for (var i = 0; i < top5.length; i++) {
+        var m = top5[i];
+        var pct = Math.round(m.requests / totalReqs * 100);
+        html += '<div class="spark-row">';
+        html += '<span class="spark-label">' + escHtml(m.model) + '</span>';
+        html += '<div class="spark-bar"><div class="spark-fill green" style="width:' + pct + '%"></div></div>';
+        html += '<span class="spark-val">' + m.requests + ' (' + pct + '%)</span>';
+        html += '</div>';
+      }
+      modelDiv.innerHTML = html;
+    }
+
+    // Recent logs
+    var logs = await apiFetch('/api/logs?limit=8');
+    var tbody = document.getElementById('recentLogsBody');
+    tbody.innerHTML = '';
+    if (logs.results.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-secondary)">暂无请求</td></tr>';
+    } else {
+      logs.results.forEach(function(log) {
+        var statusClass = log.status === 'success' ? 'active' : (log.status === 'error' ? 'error' : 'pending');
+        var dur = log.duration_ms != null ? fmtMs(log.duration_ms) : '—';
+        tbody.innerHTML += '<tr><td style="font-family:var(--mono);font-size:0.72rem">' + fmtTime(log.timestamp) + '</td><td>' + escHtml(log.model) + '</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">' + escHtml(log.content_preview) + '</td><td style="font-family:var(--mono);font-size:0.72rem">' + dur + '</td><td><span class="status-badge ' + statusClass + '">' + escHtml(statusLabel(log.status)) + '</span></td></tr>';
+      });
+    }
+  } catch(e) { console.error(e); }
+}
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

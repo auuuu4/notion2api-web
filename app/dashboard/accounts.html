@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion-2API — 账户</title>
+<link rel="stylesheet" href="/dashboard/static/shared.css?v=20261029c">
+
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<div class="dashboard-layout">
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Notion-2API</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item" href="/dashboard" aria-label="概览"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>概览</span></a>
+    <a class="nav-item active" href="/dashboard/accounts" aria-label="账户"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>账户</span></a>
+    <a class="nav-item" href="/dashboard/logs" aria-label="日志"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>日志</span></a>
+    <a class="nav-item" href="/dashboard/analytics" aria-label="分析"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>分析</span></a>
+    <a class="nav-item" href="/dashboard/settings" aria-label="设置"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.54.76.9 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>设置</span></a>
+    <a class="nav-item" href="/dashboard/auto-register" aria-label="自动注册"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="21" x2="12" y2="11"/></svg><span>自动注册</span></a>
+  </nav>
+  <div class="sidebar-footer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="sidebarUptime">—</span></div>
+</div>
+<main class="main-content" id="main-content">
+  <div class="page-header"><h1>账户管理</h1>
+    <div style="display:flex;gap:8px">
+      <button class="btn" onclick="loadAccounts()">刷新</button>
+      <button class="btn" onclick="archiveDeadAccounts()">归档死号</button>
+      <button class="btn danger" onclick="deleteNoQuotaAccounts()">一键删除无额度账号</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <select id="statusFilter" onchange="renderAccounts()">
+      <option value="">全部状态</option>
+      <option value="active">正常</option>
+      <option value="quota_exceeded">额度耗尽</option>
+      <option value="disabled">已禁用</option>
+    </select>
+    <input type="text" class="input" id="accountSearch" placeholder="按邮箱 / 名称 / 空间ID 搜索" style="max-width:300px" oninput="renderAccounts()">
+    <button class="btn" onclick="loadAccounts()">应用</button>
+    <button class="btn" onclick="resetAccountFilters()">清空</button>
+    <span id="accountSummary" style="font-size:0.78rem;color:var(--text-secondary);font-family:var(--mono)"></span>
+  </div>
+
+  <div id="accountsList"></div>
+</main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/dashboard/static/shared.js?v=20261029c"></script>
+<script>
+var QUOTA_LIMIT = 0;  // 0 = 自动检测模式（由 /api/health 提供真实值）
+var accountsCache = [];
+var checkingIds = {};
+
+function resetAccountFilters() {
+  document.getElementById('statusFilter').value = '';
+  document.getElementById('accountSearch').value = '';
+  renderAccounts();
+}
+
+function accountMatches(account) {
+  var status = document.getElementById('statusFilter').value;
+  if (status && account.status !== status) return false;
+  var query = (document.getElementById('accountSearch').value || '').trim().toLowerCase();
+  if (!query) return true;
+  var haystack = [account.user_email, account.user_name, account.space_id, account.user_id]
+    .filter(Boolean).join(' ').toLowerCase();
+  return haystack.indexOf(query) >= 0;
+}
+
+function renderAccounts() {
+  var container = document.getElementById('accountsList');
+  var visible = accountsCache.filter(accountMatches);
+  var summary = document.getElementById('accountSummary');
+  if (summary) summary.textContent = '显示 ' + visible.length + ' / ' + accountsCache.length + ' 个账号';
+  if (!visible.length) {
+    container.innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:32px">没有匹配的账户</div>';
+    return;
+  }
+  var html = '';
+  visible.forEach(function(a) {
+    var used = a.total_requests || 0;
+    var health = a.health || {};
+    var estimate = a.quota && a.quota.estimated_replies_left != null ? ('~' + a.quota.estimated_replies_left + ' 条') : '—';
+    var statusText = statusLabel(a.status);
+    var stClass = a.status === 'active' ? 'active' : 'error';
+    var quotaInfo = a.quota || {};
+    var quotaText = quotaInfo.exceeded ? '无额度' : (used + ' 次（自动检测）');
+    var quotaFillClass = quotaInfo.exceeded ? 'full' : 'ok';
+    var quotaFillWidth = quotaInfo.exceeded ? 100 : 0;
+    var credentials = a.token_preview || '—';
+    html += '<div class="account-card' + (a.status === 'active' ? '' : ' quota-exceeded') + '">' +
+      '<div class="account-header">' +
+        '<div><span class="account-name">' + escHtml(a.user_name || a.user_email || '未知') + '</span> ' +
+        '<span class="status-badge ' + stClass + '">' + escHtml(statusText) + '</span> ' +
+        (a.auto_registered ? '<span class="status-badge active">自动</span>' : '<span class="status-badge" style="background:var(--bg-elevated);color:var(--text-secondary)">手动</span>') +
+        '</div>' +
+        '<div class="action-btns">' +
+          '<button class="btn" onclick="checkQuota(\'' + a.id + '\')">检查额度</button>' +
+          '<button class="btn danger" onclick="deleteAccount(\'' + a.id + '\')">删除</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="quota-label">额度使用</div>' +
+      '<div class="quota-bar"><div class="quota-track"><div class="quota-fill ' + quotaFillClass + '" style="width:' + quotaFillWidth + '%"></div></div>' +
+      '<span class="quota-text">' + escHtml(quotaText) + '</span></div>' +
+      '<div class="account-meta" style="margin-top:10px">' +
+        '<div class="meta-item"><span class="meta-label">邮箱</span><span class="meta-value">' + escHtml(a.user_email || '—') + '</span></div>' +
+        '<div class="meta-item"><span class="meta-label">用户ID</span><span class="meta-value">' + escHtml(a.user_id ? a.user_id.slice(0, 20) + '...' : '—') + '</span></div>' +
+        '<div class="meta-item"><span class="meta-label">空间ID</span><span class="meta-value">' + escHtml(a.space_id ? a.space_id.slice(0, 20) + '...' : '—') + '</span></div>' +
+        '<div class="meta-item"><span class="meta-label">创建时间</span><span class="meta-value">' + (a.created_at ? new Date(a.created_at).toLocaleString() : '—') + '</span></div>' +
+        '<div class="meta-item"><span class="meta-label">凭证</span><span class="meta-value" style="font-size:0.68rem;color:var(--text-secondary)">' + escHtml(credentials) + '</span></div>' +
+        '<div class="meta-item"><span class="meta-label">预计剩余</span><span class="meta-value">' + escHtml(estimate) + '</span></div>' +
+        '<div class="meta-item"><span class="meta-label">健康</span><span class="meta-value">连续失败 ' + (health.consecutive_failures || 0) + ' · 成功 ' + (health.success_count || 0) + (health.disabled_reason ? ' · ' + escHtml(health.disabled_reason) : '') + '</span></div>' +
+      '</div>' +
+    '</div>';
+  });
+  container.innerHTML = html;
+}
+
+async function loadAccounts() {
+  try {
+    var [accounts, health] = await Promise.all([apiFetch('/api/accounts'), apiFetch('/api/health')]);
+    QUOTA_LIMIT = health.quota_limit || 0;
+    accountsCache = accounts || [];
+    renderAccounts();
+  } catch (e) {}
+}
+
+async function deleteAccount(id) {
+  if (!confirm('确定删除此账户？')) return;
+  try {
+    await apiFetch('/api/accounts/' + id, { method: 'DELETE' });
+    showToast('账户已删除', 'success');
+    loadAccounts();
+  } catch (e) {}
+}
+
+async function checkQuota(id) {
+  if (checkingIds[id]) return;
+  checkingIds[id] = true;
+  showToast('正在检查额度...', 'info');
+  try {
+    var result = await apiFetch('/api/accounts/' + id + '/check', { method: 'POST' });
+    if (result.success) {
+      if (result.status === 'quota_exceeded') {
+        var q = result.quota || {};
+        showToast('额度已用尽: ' + (q.current || '?') + '/' + (q.total || '?'), 'error');
+      } else if (result.status === 'deleted') {
+        showToast('检测到无额度，账号已按设置自动删除', 'error');
+      } else {
+        showToast('账户正常', 'success');
+      }
+      loadAccounts();
+    }
+  } catch (e) {}
+  checkingIds[id] = false;
+}
+
+async function archiveDeadAccounts() {
+  try {
+    var preview = await apiFetch('/api/accounts/cleanup', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ statuses: ['quota_exceeded', 'disabled'], mode: 'archive', dry_run: true })
+    });
+    if (!preview.matched) { showToast('没有可归档的死号', 'info'); return; }
+    if (!confirm('将归档 ' + preview.matched + ' 个死号（额度耗尽/已禁用），之后可从归档恢复。继续？')) return;
+    var result = await apiFetch('/api/accounts/cleanup', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ statuses: ['quota_exceeded', 'disabled'], mode: 'archive' })
+    });
+    showToast('已归档 ' + (result.archived || 0) + ' 个账号', 'success');
+    loadAccounts();
+  } catch (e) {}
+}
+
+async function deleteNoQuotaAccounts() {
+  try {
+    var preview = await apiFetch('/api/accounts/cleanup', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ statuses: ['quota_exceeded'], mode: 'delete', dry_run: true })
+    });
+    if (!preview.matched) { showToast('没有无额度账号', 'info'); return; }
+    if (!confirm('将直接删除 ' + preview.matched + ' 个无额度（quota_exceeded）账号，不可恢复！继续？')) return;
+    var result = await apiFetch('/api/accounts/cleanup', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ statuses: ['quota_exceeded'], mode: 'delete' })
+    });
+    showToast('已删除 ' + (result.deleted || 0) + ' 个无额度账号', 'success');
+    loadAccounts();
+  } catch (e) {}
+}
+
+loadAccounts();
+setInterval(loadAccounts, 20000);
+</script>
+</body>
+</html>

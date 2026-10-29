@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion-2API — 设置</title>
+<link rel="stylesheet" href="/dashboard/static/shared.css?v=20261029c">
+
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<div class="dashboard-layout">
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Notion-2API</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item" href="/dashboard" aria-label="概览"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>概览</span></a>
+    <a class="nav-item" href="/dashboard/accounts" aria-label="账户"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>账户</span></a>
+    <a class="nav-item" href="/dashboard/logs" aria-label="日志"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>日志</span></a>
+    <a class="nav-item" href="/dashboard/analytics" aria-label="分析"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>分析</span></a>
+    <a class="nav-item active" href="/dashboard/settings" aria-label="设置"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.54.76.9 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>设置</span></a>
+    <a class="nav-item" href="/dashboard/auto-register" aria-label="自动注册"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="21" x2="12" y2="11"/></svg><span>自动注册</span></a>
+  </nav>
+  <div class="sidebar-footer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="sidebarUptime">—</span></div>
+</div>
+<main class="main-content" id="main-content">
+  <div class="page-header"><h1>系统设置</h1>
+    <div style="display:flex;gap:8px">
+      <button class="btn" onclick="loadSettings()">刷新</button>
+      <a class="btn" href="/dashboard/auto-register">管理注册节点</a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header"><span class="panel-title">当前配置</span>
+      <span style="font-size:0.8rem;color:var(--text-secondary)">本地面板显示完整值（勿对外暴露面板）</span>
+    </div>
+    <div class="panel-body"><div id="currentConfig" class="config-grid">加载中...</div></div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <div class="panel-header"><span class="panel-title">编辑设置</span>
+      <span style="font-size:0.8rem;color:var(--text-secondary)">标「运行时」的立即生效，其余写入 .env，重启后生效</span>
+    </div>
+    <div class="panel-body">
+      <div id="settingsHint" style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px"></div>
+      <div class="form-grid">
+        <label>API 密钥（Bearer）</label><input class="input" id="cfgApiKey" type="text">
+        <label>服务端口 NGINX_PORT</label><input class="input" id="cfgPort" type="number">
+        <label>默认模型 DEFAULT_MODEL</label><select class="input" id="cfgDefaultModel"></select>
+        <label>Notion Client Version</label><input class="input" id="cfgClientVersion" type="text">
+        <label>请求超时（秒）</label><input class="input" id="cfgTimeout" type="number">
+
+        <label>TEMP_EMAIL_PROVIDER</label><select class="input" id="cfgProvider" onchange="renderProviderHint()">
+          <option value="emailnator">emailnator（固定 @googlemail.com）</option>
+          <option value="cfmail">cfmail（自建临时邮箱）</option>
+        </select>
+        <label>TEMP_EMAIL_BASE</label><input class="input" id="cfgTempBase" type="text">
+        <label>TEMP_EMAIL_ADMIN_AUTH</label><input class="input" id="cfgTempAdmin" type="text">
+        <label>TEMP_EMAIL_DOMAIN</label><input class="input" id="cfgTempDomain" type="text">
+        <div style="grid-column:2;font-size:0.78rem;color:var(--text-secondary)" id="tempEmailHint"></div>
+
+        <label>自动补号开关（运行时）</label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="cfgReplenishEnabled"> 开启自动补号</label>
+        <label>补号目标可用账号数（运行时）</label><input class="input" id="cfgReplenishTarget" type="number" min="1" max="50">
+        <label>补号邮箱域名（运行时）</label><input class="input" id="cfgReplenishDomain" type="text">
+        <label>账号无额度时自动删除（运行时）</label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="cfgAutoDelete"> 检测到 Notion 无额度后直接删除该账号</label>
+        <div style="grid-column:2;font-size:0.78rem;color:var(--warning)" id="autoDeleteHint">
+          默认关闭。仅当 Notion 明确返回无额度（premium-feature-unavailable / quota_exceeded）时删除；空响应、网络、token 失效等异常不会触发删除。
+        </div>
+
+        <label>免费额度估算 FREE_CREDITS_LIMIT</label><input class="input" id="cfgFreeCredits" type="number" step="1">
+        <label>调度预留回复数 QUOTA_RESERVE_REPLIES</label><input class="input" id="cfgReserve" type="number">
+        <label>死号自动归档（运行时）</label>
+        <label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="cfgArchiveEnabled"> 开启定时归档</label>
+        <label>归档方式 ACCOUNT_ARCHIVE_MODE</label><select class="input" id="cfgArchiveMode"><option value="archive">移入归档（可恢复）</option><option value="delete">直接删除</option></select>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:10px;align-items:center">
+        <button class="btn primary" onclick="saveSettings()">保存设置</button>
+        <span id="saveResult" style="font-size:0.8rem;color:var(--text-secondary)"></span>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/dashboard/static/shared.js?v=20261029c"></script>
+<script>
+var SETTINGS = null;
+
+function escapeHtml(value) { return escHtml(String(value == null ? '' : value)); }
+
+function renderCurrentConfig(current) {
+  var groups = [
+    { title: '核心', keys: [
+      ['APP_VERSION', '版本'], ['API_MASTER_KEY', 'API 密钥'], ['NGINX_PORT', '端口'],
+      ['DEFAULT_MODEL', '默认模型'], ['NOTION_CLIENT_VERSION', 'Notion Client Version'], ['API_REQUEST_TIMEOUT', '请求超时(秒)']
+    ]},
+    { title: '临时邮箱 / 注册', keys: [
+      ['TEMP_EMAIL_PROVIDER', 'Provider'], ['TEMP_EMAIL_BASE', 'Base URL'], ['TEMP_EMAIL_ADMIN_AUTH', 'Admin Auth'],
+      ['TEMP_EMAIL_DOMAIN', '邮箱域名'], ['REGISTER_PROXY', '注册出口节点'], ['REGISTER_PROXY_ROTATE', '节点轮换'],
+      ['REGISTER_EGRESS_MODE', '出口模式']
+    ]},
+    { title: '补号 / 账号健康', keys: [
+      ['AUTO_REPLENISH_ENABLED', '自动补号'], ['AUTO_REPLENISH_TARGET', '补号目标'], ['AUTO_REPLENISH_DOMAIN', '补号域名'],
+      ['AUTO_DELETE_QUOTA_EXCEEDED', '无额度自动删除'], ['REGISTER_PAUSE_AFTER_FAILURES', '暂停阈值(次)'],
+      ['REGISTER_PAUSE_SECONDS', '暂停时长(秒)'], ['ACCOUNT_HEALTH_ENABLED', '健康巡检'],
+      ['ACCOUNT_HEALTH_INTERVAL_MINUTES', '巡检间隔(分)'], ['ACCOUNT_FAILURE_THRESHOLD', '失败阈值'],
+      ['ACCOUNT_EMPTY_THRESHOLD', '空响应阈值'], ['ACCOUNT_ARCHIVE_ENABLED', '自动归档'],
+      ['ACCOUNT_ARCHIVE_MODE', '归档方式'], ['ACCOUNT_ARCHIVE_QUOTA_DAYS', '额度号归档天数'],
+      ['ACCOUNT_ARCHIVE_DISABLED_DAYS', '禁用号归档天数'], ['FREE_CREDITS_LIMIT', '免费额度估算'],
+      ['QUOTA_RESERVE_REPLIES', '调度预留条数']
+    ]}
+  ];
+  var html = '';
+  groups.forEach(function(group) {
+    html += '<div class="config-section-title">' + escapeHtml(group.title) + '</div>';
+    group.keys.forEach(function(pair) {
+      var key = pair[0], label = pair[1];
+      if (!(key in current)) return;
+      var value = fmtConfigValue(current[key]);
+      html += '<div class="config-key">' + escapeHtml(label) + '<span style="opacity:.55"> (' + escapeHtml(key) + ')</span></div>';
+      html += '<div class="config-val">' + escapeHtml(value) + '</div>';
+    });
+  });
+  if (!html) html = '（暂无配置）';
+  document.getElementById('currentConfig').innerHTML = html;
+}
+
+function fillSelect(id, values, selected) {
+  var sel = document.getElementById(id);
+  sel.innerHTML = '';
+  values.forEach(function(item) {
+    var opt = document.createElement('option');
+    opt.value = item; opt.textContent = item;
+    if (item === selected) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function renderProviderHint() {
+  var provider = document.getElementById('cfgProvider').value;
+  var hint = document.getElementById('tempEmailHint');
+  if (provider === 'emailnator') {
+    hint.innerHTML = 'emailnator 模式不需要域名/Base/Admin：它会分配合法 @googlemail.com 地址并通过其 API 收验证码。域名输入仅对 cfmail 生效。';
+  } else {
+    hint.innerHTML = 'cfmail 模式需要自建 cloudflare_temp_email 服务：填写 Base URL、Admin Auth 密码与可用域名。';
+  }
+}
+
+function fillSettingsForm(current) {
+  document.getElementById('cfgApiKey').value = current.API_MASTER_KEY || '';
+  document.getElementById('cfgPort').value = current.NGINX_PORT || '';
+  fillSelect('cfgDefaultModel', SETTINGS.known_models || [], current.DEFAULT_MODEL);
+  document.getElementById('cfgClientVersion').value = current.NOTION_CLIENT_VERSION || '';
+  document.getElementById('cfgTimeout').value = current.API_REQUEST_TIMEOUT || '';
+  document.getElementById('cfgProvider').value = current.TEMP_EMAIL_PROVIDER || 'emailnator';
+  document.getElementById('cfgTempBase').value = current.TEMP_EMAIL_BASE || '';
+  document.getElementById('cfgTempAdmin').value = current.TEMP_EMAIL_ADMIN_AUTH || '';
+  document.getElementById('cfgTempDomain').value = current.TEMP_EMAIL_DOMAIN || '';
+  document.getElementById('cfgReplenishEnabled').checked = !!current.AUTO_REPLENISH_ENABLED;
+  document.getElementById('cfgReplenishTarget').value = current.AUTO_REPLENISH_TARGET || 10;
+  document.getElementById('cfgReplenishDomain').value = current.AUTO_REPLENISH_DOMAIN || current.TEMP_EMAIL_DOMAIN || '';
+  document.getElementById('cfgAutoDelete').checked = !!current.AUTO_DELETE_QUOTA_EXCEEDED;
+  document.getElementById('cfgFreeCredits').value = current.FREE_CREDITS_LIMIT || 50;
+  document.getElementById('cfgReserve').value = current.QUOTA_RESERVE_REPLIES != null ? current.QUOTA_RESERVE_REPLIES : 2;
+  document.getElementById('cfgArchiveEnabled').checked = !!current.ACCOUNT_ARCHIVE_ENABLED;
+  document.getElementById('cfgArchiveMode').value = current.ACCOUNT_ARCHIVE_MODE || 'archive';
+  renderProviderHint();
+}
+
+async function loadSettings() {
+  try {
+    SETTINGS = await apiFetch('/api/settings');
+    renderCurrentConfig(SETTINGS.current || {});
+    fillSettingsForm(SETTINGS.current || {});
+    document.getElementById('settingsHint').textContent = '当前配置渲染自 /api/settings；保存会写入 .env 并尽量即时应用运行时项。';
+  } catch (e) {
+    document.getElementById('currentConfig').textContent = '加载失败';
+  }
+}
+
+function numberOrNull(value) {
+  var parsed = parseFloat(value);
+  return isNaN(parsed) ? null : parsed;
+}
+
+async function saveSettings() {
+  var payload = {
+    API_MASTER_KEY: document.getElementById('cfgApiKey').value,
+    NGINX_PORT: numberOrNull(document.getElementById('cfgPort').value),
+    DEFAULT_MODEL: document.getElementById('cfgDefaultModel').value,
+    NOTION_CLIENT_VERSION: document.getElementById('cfgClientVersion').value,
+    API_REQUEST_TIMEOUT: numberOrNull(document.getElementById('cfgTimeout').value),
+    TEMP_EMAIL_PROVIDER: document.getElementById('cfgProvider').value,
+    TEMP_EMAIL_BASE: document.getElementById('cfgTempBase').value,
+    TEMP_EMAIL_ADMIN_AUTH: document.getElementById('cfgTempAdmin').value,
+    TEMP_EMAIL_DOMAIN: document.getElementById('cfgTempDomain').value,
+    AUTO_REPLENISH_ENABLED: document.getElementById('cfgReplenishEnabled').checked,
+    AUTO_REPLENISH_TARGET: numberOrNull(document.getElementById('cfgReplenishTarget').value),
+    AUTO_REPLENISH_DOMAIN: document.getElementById('cfgReplenishDomain').value,
+    AUTO_DELETE_QUOTA_EXCEEDED: document.getElementById('cfgAutoDelete').checked,
+    FREE_CREDITS_LIMIT: numberOrNull(document.getElementById('cfgFreeCredits').value),
+    QUOTA_RESERVE_REPLIES: numberOrNull(document.getElementById('cfgReserve').value),
+    ACCOUNT_ARCHIVE_ENABLED: document.getElementById('cfgArchiveEnabled').checked,
+    ACCOUNT_ARCHIVE_MODE: document.getElementById('cfgArchiveMode').value
+  };
+  var result = document.getElementById('saveResult');
+  try {
+    var data = await apiFetch('/api/settings', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+    });
+    result.textContent = '已保存。运行时生效: ' + ((data.applied || []).join(', ') || '无') +
+      '；需重启: ' + ((data.restart_required || []).join(', ') || '无');
+    showToast('设置已保存', 'success');
+    loadSettings();
+  } catch (e) {
+    result.textContent = '保存失败: ' + e.message;
+    showToast('保存失败', 'error');
+  }
+}
+
+loadSettings();
+</script>
+</body>
+</html>

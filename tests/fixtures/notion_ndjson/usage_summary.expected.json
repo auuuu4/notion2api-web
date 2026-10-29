@@ -1,0 +1,23 @@
+{
+  "visible_text": "",
+  "final_text": "",
+  "record_map_text": "",
+  "saw_record_map": false,
+  "parsed_records": 1,
+  "thinking_chars": 0,
+  "unknown_op_count": 0,
+  "mismatch": null,
+  "quota": null,
+  "reducer_since_ms": null,
+  "native_extract": null,
+  "native_calls": null,
+  "provider_usage": {
+    "input_tokens": 1234,
+    "output_tokens": 56,
+    "credits_by_type_unit": {
+      "basic_ai_credits": 1.5
+    },
+    "cached_input_tokens_read": 100,
+    "cached_input_tokens_created": 20
+  }
+}

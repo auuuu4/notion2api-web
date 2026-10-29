@@ -1,0 +1,1 @@
+{"type": "patch", "v": [], "usage_summary": {"input_tokens": 1234, "output_tokens": 56, "credits_by_type_unit": {"basic_ai_credits": 1.5}, "cached_input_tokens_read": 100, "cached_input_tokens_created": 20}}

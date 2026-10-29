@@ -1,0 +1,19 @@
+{
+  "visible_text": "真实 答案",
+  "final_text": "真实答案（快照补充）",
+  "record_map_text": "真实答案（快照补充）",
+  "saw_record_map": true,
+  "parsed_records": 4,
+  "thinking_chars": 4,
+  "unknown_op_count": 0,
+  "mismatch": {
+    "record_map_chars": 10,
+    "visible_chars": 5,
+    "first_diff_offset": 2
+  },
+  "quota": null,
+  "reducer_since_ms": null,
+  "native_extract": null,
+  "native_calls": null,
+  "provider_usage": null
+}

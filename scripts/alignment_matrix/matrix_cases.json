@@ -1,0 +1,543 @@
+{
+  "default": {
+    "rounds": [
+      {
+        "text": "MOCK-DEFAULT"
+      }
+    ]
+  },
+  "cases": {
+    "write": {
+      "task": "MATRIX-CASE:write 创建 out.html 文件，内容为 <!doctype html><html><body>matrix-write-ok</body></html>，用原生 callFunction 的工具调用完成，最后只回复一行结果。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "write"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "files": [
+        {
+          "path": "out.html",
+          "contains": "matrix-write-ok"
+        }
+      ],
+      "final_contains": "MATRIX-DONE:write",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.writeFile",
+              "args": {
+                "path": "out.html",
+                "content": "<!doctype html><html><body>matrix-write-ok</body></html>"
+              },
+              "result": "wrote out.html"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:write out.html"
+        }
+      ]
+    },
+    "read": {
+      "task": "MATRIX-CASE:read 读取 probe.txt 并确认内容，用原生 callFunction 的工具调用完成。",
+      "fixtures": {
+        "probe.txt": "native probe content 42\n"
+      },
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "read"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "files": [
+        {
+          "path": "probe.txt",
+          "contains": "native probe content 42"
+        }
+      ],
+      "final_contains": "MATRIX-DONE:read",
+      "result_contains": "native probe content 42",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.readFile",
+              "args": {
+                "path": "probe.txt"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:read"
+        }
+      ]
+    },
+    "glob": {
+      "task": "MATRIX-CASE:glob 列出当前目录有哪些文件，用原生 callFunction 的工具调用完成。",
+      "fixtures": {
+        "alpha.txt": "a\n",
+        "beta.txt": "b\n"
+      },
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "glob"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "files": [
+        {
+          "path": "alpha.txt",
+          "contains": "a"
+        }
+      ],
+      "final_contains": "MATRIX-DONE:glob",
+      "result_contains": "alpha.txt",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.listFiles",
+              "args": {
+                "path": "."
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:glob"
+        }
+      ]
+    },
+    "edit": {
+      "task": "MATRIX-CASE:edit 先读取 a.txt，再把文件里的 hello 改成 bonjour，用原生 callFunction 的工具调用完成。",
+      "fixtures": {
+        "a.txt": "hello world\n"
+      },
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "read",
+          "edit"
+        ],
+        "ptc": [
+          "run_code",
+          "run_code"
+        ]
+      },
+      "files": [
+        {
+          "path": "a.txt",
+          "contains": "bonjour world"
+        }
+      ],
+      "final_contains": "MATRIX-DONE:edit",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.readFile",
+              "args": {
+                "path": "a.txt"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "native": [
+            {
+              "function": "connections.computer.editFile",
+              "args": {
+                "path": "a.txt",
+                "old_string": "hello",
+                "new_string": "bonjour"
+              },
+              "result": "edited"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:edit"
+        }
+      ]
+    },
+    "grep": {
+      "task": "MATRIX-CASE:grep 在 probe.txt 中搜索 needle，用原生 callFunction 的工具调用完成。",
+      "fixtures": {
+        "probe.txt": "line one\nneedle-native\nline three\n"
+      },
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "grep"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "final_contains": "MATRIX-DONE:grep",
+      "result_contains": "needle-native",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.grep",
+              "args": {
+                "pattern": "needle",
+                "path": "probe.txt"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:grep"
+        }
+      ]
+    },
+    "web_search": {
+      "task": "MATRIX-CASE:web_search 搜索 DeepSeek 最新新闻，用原生 callFunction 的工具调用完成。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "web_search"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "final_contains": "MATRIX-DONE:web_search",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.webSearch",
+              "args": {
+                "queries": [
+                  "DeepSeek"
+                ]
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:web_search"
+        }
+      ]
+    },
+    "web_fetch": {
+      "task": "MATRIX-CASE:web_fetch 打开 https://example.com 并确认标题，用原生 callFunction 的工具调用完成。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "web_fetch"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "final_contains": "MATRIX-DONE:web_fetch",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.webFetch",
+              "args": {
+                "url": "https://example.com"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:web_fetch"
+        }
+      ]
+    },
+    "run_code": {
+      "task": "MATRIX-CASE:run_code 运行代码打印 RUNCODE-OK-42，用原生 callFunction 的 runCode 完成。",
+      "fixtures": {},
+      "modes": [
+        "ptc"
+      ],
+      "expect_tools": {
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "final_contains": "MATRIX-DONE:run_code",
+      "result_contains": "RUNCODE-OK-42",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.runCode",
+              "args": {
+                "code": "console.log('RUNCODE-OK-42')",
+                "description": "print matrix marker"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:run_code"
+        }
+      ]
+    },
+    "notion_tool": {
+      "task": "MATRIX-CASE:notion_tool 加载 Notion 页面 page://matrix，用官方 connections.notion 调用完成。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [],
+        "ptc": []
+      },
+      "no_tool_call": true,
+      "final_contains": "MATRIX-DONE:notion_tool",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.notion.loadPage",
+              "args": {
+                "url": "page://matrix"
+              },
+              "result": "notion page loaded"
+            }
+          ],
+          "text": "MATRIX-DONE:notion_tool"
+        }
+      ]
+    },
+    "unknown_tool": {
+      "task": "MATRIX-CASE:unknown_tool 调用一个不存在的工具 connections.computer.unknownThing。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [],
+        "ptc": []
+      },
+      "no_tool_call": true,
+      "final_contains": "MATRIX-DONE:unknown_tool",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.unknownThing",
+              "args": {
+                "x": 1
+              },
+              "result": "not executed"
+            }
+          ],
+          "text": "MATRIX-DONE:unknown_tool"
+        }
+      ]
+    },
+    "auto_load": {
+      "task": "MATRIX-CASE:auto_load 写文件 matrix_auto.txt，内容 auto-load-check。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "write"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "files": [
+        {
+          "path": "matrix_auto.txt",
+          "contains": "auto-load-check"
+        }
+      ],
+      "final_contains": "MATRIX-DONE:auto_load",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.fs.readFiles",
+              "args": {
+                "files": [
+                  "modules/search/AGENTS.md"
+                ]
+              },
+              "auto_load": "core_docs",
+              "result": "docs loaded"
+            },
+            {
+              "function": "connections.fs.readDir",
+              "args": {
+                "dir": ".",
+                "tree": true
+              },
+              "auto_load": "file_tree",
+              "result": "tree loaded"
+            },
+            {
+              "function": "connections.computer.writeFile",
+              "args": {
+                "path": "matrix_auto.txt",
+                "content": "auto-load-check\n"
+              },
+              "result": "wrote matrix_auto.txt"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:auto_load"
+        }
+      ]
+    },
+    "error": {
+      "task": "MATRIX-CASE:error 读取 missing.txt 看它是否存在，用原生 callFunction 的工具调用完成。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "read"
+        ],
+        "ptc": [
+          "run_code"
+        ]
+      },
+      "final_contains": "MATRIX-DONE:error",
+      "error_result_contains": "missing.txt",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.readFile",
+              "args": {
+                "path": "missing.txt"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "MATRIX-DONE:error missing.txt missing"
+        }
+      ]
+    },
+    "multi_turn": {
+      "task": "MATRIX-CASE:multi_turn 写文件 matrix_multi.txt，内容 multi-turn matrix payload。",
+      "turn2_task": "现在读取 matrix_multi.txt，告诉我它的内容。",
+      "fixtures": {},
+      "modes": [
+        "full",
+        "ptc"
+      ],
+      "expect_tools": {
+        "full": [
+          "write"
+        ],
+        "full_turn2": [
+          "read"
+        ],
+        "ptc": [
+          "run_code"
+        ],
+        "ptc_turn2": [
+          "run_code"
+        ]
+      },
+      "files": [
+        {
+          "path": "matrix_multi.txt",
+          "contains": "multi-turn matrix payload"
+        }
+      ],
+      "final_contains": "TURN2-DONE:multi_turn",
+      "turn1_final_contains": "TURN1-DONE:multi_turn",
+      "rounds": [
+        {
+          "native": [
+            {
+              "function": "connections.computer.writeFile",
+              "args": {
+                "path": "matrix_multi.txt",
+                "content": "multi-turn matrix payload\n"
+              },
+              "result": "wrote matrix_multi.txt"
+            }
+          ]
+        },
+        {
+          "text": "TURN1-DONE:multi_turn"
+        },
+        {
+          "native": [
+            {
+              "function": "connections.computer.readFile",
+              "args": {
+                "path": "matrix_multi.txt"
+              },
+              "result": "ok"
+            }
+          ]
+        },
+        {
+          "text": "TURN2-DONE:multi_turn"
+        }
+      ],
+      "rounds_per_turn": [
+        2,
+        2
+      ]
+    }
+  }
+}

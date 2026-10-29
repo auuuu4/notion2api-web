@@ -1,0 +1,6 @@
+{"type": "patch", "v": [{"o": "a", "p": "/s/-", "v": {"type": "agent-inference", "id": "ai-1", "startedAt": 9999999999999, "value": [{"type": "thinking", "content": "The"}]}}]}
+{"type": "patch", "v": [{"o": "x", "p": "/s/1/value/0/content", "v": " user wants"}]}
+{"type": "patch", "v": [{"o": "x", "p": "/s/1/value/0/content", "v": " a post."}]}
+{"type": "patch", "v": [{"o": "a", "p": "/s/1/value/-", "v": {"type": "text", "content": "##"}}]}
+{"type": "patch", "v": [{"o": "x", "p": "/s/1/value/1/content", "v": " 姐妹们，测试正文"}]}
+{"type": "record-map", "recordMap": {"thread_message": {"m": {"value": {"value": {"step": {"type": "agent-inference", "startedAt": 9999999999999, "value": [{"type": "thinking", "content": "The user wants a post."}, {"type": "text", "content": "## 姐妹们，测试正文"}]}}}}}}}

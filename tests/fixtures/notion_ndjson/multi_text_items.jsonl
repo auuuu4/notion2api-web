@@ -1,0 +1,4 @@
+{"type": "patch", "v": [{"o": "a", "p": "/s/-", "v": {"type": "agent-inference", "id": "ai-2", "startedAt": 9999999999999, "value": [{"type": "thinking", "content": "plan"}]}}]}
+{"type": "patch", "v": [{"o": "a", "p": "/s/1/value/-", "v": {"type": "text", "content": "第一段"}}]}
+{"type": "patch", "v": [{"o": "a", "p": "/s/1/value/-", "v": {"type": "text", "content": "第二段"}}]}
+{"type": "record-map", "recordMap": {"thread_message": {"m": {"value": {"value": {"step": {"type": "agent-inference", "startedAt": 9999999999999, "value": [{"type": "text", "content": "第一段"}, {"type": "text", "content": "第二段"}]}}}}}}}

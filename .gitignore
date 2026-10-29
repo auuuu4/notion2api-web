@@ -1,0 +1,40 @@
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Data & secrets
+accounts.json
+notion2api.db
+*.db
+accounts_archive.json
+register_nodes.json
+registration_nodes.json
+reg_logs.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Generated / local artifacts
+*.log
+scripts/alignment_matrix/_work/
+scripts/alignment_matrix/patch-*.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+项目完整结构代码.txt

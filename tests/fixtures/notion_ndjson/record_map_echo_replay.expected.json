@@ -1,0 +1,28 @@
+{
+  "visible_text": "",
+  "final_text": "",
+  "record_map_text": "",
+  "saw_record_map": true,
+  "parsed_records": 2,
+  "thinking_chars": 0,
+  "unknown_op_count": 0,
+  "mismatch": null,
+  "quota": null,
+  "reducer_since_ms": null,
+  "native_extract": {
+    "since_ms": 1000,
+    "exclude_ids": [
+      "replay-1"
+    ]
+  },
+  "native_calls": [
+    {
+      "function": "connections.computer.writeFile",
+      "args": {
+        "path": "new.html",
+        "content": "new"
+      }
+    }
+  ],
+  "provider_usage": null
+}

@@ -1,0 +1,18 @@
+{
+  "visible_text": "",
+  "final_text": "",
+  "record_map_text": "",
+  "saw_record_map": false,
+  "parsed_records": 1,
+  "thinking_chars": 0,
+  "unknown_op_count": 0,
+  "mismatch": null,
+  "quota": {
+    "current": 68,
+    "total": 50
+  },
+  "reducer_since_ms": null,
+  "native_extract": null,
+  "native_calls": null,
+  "provider_usage": null
+}

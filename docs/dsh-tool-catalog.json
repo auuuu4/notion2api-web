@@ -1,0 +1,278 @@
+[
+ {
+  "name": "create_goal",
+  "description": "Create a persisted goal that keeps this session working across automatic continuation rounds. Use it when the direct human request is a long-running objective, even if the user did not say \"goal\"; not for single-turn work.",
+  "required": [
+   "objective"
+  ],
+  "args": [
+   "objective",
+   "max_goal_rounds"
+  ]
+ },
+ {
+  "name": "edit",
+  "description": "Edit an existing UTF-8 text file by replacing literal text.",
+  "required": [
+   "file_path",
+   "old_string",
+   "new_string"
+  ],
+  "args": [
+   "file_path",
+   "old_string",
+   "new_string",
+   "replace_all",
+   "sandbox_permissions",
+   "justification"
+  ]
+ },
+ {
+  "name": "exit_plan_mode",
+  "description": "Use only in plan mode. Present your plan for the user's review and, on approval, leave plan mode. The user may approve (carry out the plan from your next step) or keep planning — their feedback comes back in the tool result; revise and present again.",
+  "required": [
+   "plan"
+  ],
+  "args": [
+   "plan"
+  ]
+ },
+ {
+  "name": "get_goal",
+  "description": "Read the current session goal, including the id and revision that update_goal requires.",
+  "required": [],
+  "args": []
+ },
+ {
+  "name": "glob",
+  "description": "Find files, not directories, whose paths match a glob pattern, including hidden and ignored files. Returns up to 100 paths in modification-time order; a larger result keeps the first paths and reports where the complete list was saved.",
+  "required": [
+   "pattern"
+  ],
+  "args": [
+   "pattern",
+   "path"
+  ]
+ },
+ {
+  "name": "grep",
+  "description": "Search file contents with a ripgrep regular expression. Returns matching lines with line numbers, grouped by file. Returns up to 250 matches; a larger result reports where the complete match list was saved.",
+  "required": [
+   "pattern"
+  ],
+  "args": [
+   "pattern",
+   "path",
+   "include"
+  ]
+ },
+ {
+  "name": "interrupt_agent",
+  "description": "Ask a subagent to stop its current work. This call returns without waiting for it to stop. You can continue a direct child's conversation later with send_message. Subagents it started will keep running.",
+  "required": [
+   "agent_id"
+  ],
+  "args": [
+   "agent_id"
+  ]
+ },
+ {
+  "name": "job_kill",
+  "description": "Request cancellation of a running background job.",
+  "required": [
+   "job_id"
+  ],
+  "args": [
+   "job_id",
+   "reason"
+  ]
+ },
+ {
+  "name": "job_list",
+  "description": "List your background jobs (running and finished) with their ids, kinds, and statuses.",
+  "required": [],
+  "args": []
+ },
+ {
+  "name": "job_output",
+  "description": "Read a background job: output since the previous read for stream jobs, or the result of a finished final-output job.",
+  "required": [
+   "job_id"
+  ],
+  "args": [
+   "job_id",
+   "wait",
+   "timeout_ms"
+  ]
+ },
+ {
+  "name": "list_agents",
+  "description": "List subagents you started, with their ids, labels, and status. running means it is working; inactive means it is not currently working. You will be notified when a subagent finishes; there is no need to keep checking its status. Use send_message to continue the conversation.",
+  "required": [],
+  "args": [
+   "scope"
+  ]
+ },
+ {
+  "name": "pwsh",
+  "description": "Execute a PowerShell command (`pwsh -Command`) and return its stdout/stderr. Each call runs in a fresh pwsh process; pass `workdir` instead of using `cd`. Paths use native Windows form (`C:\\...`); read environment variables with `$env:NAME`. Managed `$env:DSH_*` variables expose current harness environment facts. Long output is truncated to its tail; the full output is saved to a file whose path is reported when available. On Windows a force-killed command settles as `[exit code: 1]` without a signal marker — treat it as an interruption, not a command failure. Before any delete or move, verify that the resolved absolute target path is the intended one; never run it against a computed path you have not checked. Do not assign to automatic variables such as `$HOME`; variable names are case-insensitive, so `$home` is the same read-only variable. Commands may run under a file sandbox; a blocked file operation is reported as `[sandbox: file access denied under <mode> mode]`, a policy denial: do not retry another way. Under the Windows sandbox, read-only pwsh runs in PowerShell ConstrainedLanguage mode, while workspace-write stays in FullLanguage unless host policy says otherwise. In read-only, prefer cmdlets and core types (`[string]`, `[datetime]`, `[regex]`, `[guid]`); .NET static calls (`[System.IO.*]::`, `[math]::`), `Add-Type`, COM objects, and reflection fail with \"only core types\" errors. `-f` formatting, property access, and core cmdlets work. In both confined modes, programs cannot open named pipes, so a command that captures another program's output through piped stdio (Node.js `child_process.spawn`/`exec` with the default `stdio: 'pipe'`) fails with EPERM, while `stdio: 'inherit'` and `stdio: 'ignore'` spawns work and PowerShell's own pipelines are unaffected. That EPERM is the documented boundary: do not retry the command another way — escalate the exact command once or restructure it to avoid capturing output.",
+  "required": [
+   "command",
+   "description"
+  ],
+  "args": [
+   "command",
+   "description",
+   "timeoutMs",
+   "workdir",
+   "run_in_background",
+   "sandbox_permissions",
+   "justification"
+  ]
+ },
+ {
+  "name": "read",
+  "description": "Read a UTF-8 text file and return line-numbered content.",
+  "required": [
+   "file_path"
+  ],
+  "args": [
+   "file_path",
+   "offset",
+   "limit"
+  ]
+ },
+ {
+  "name": "read_image",
+  "description": "Read a PNG/JPEG/WebP/GIF file and return the image itself. Large images are downscaled automatically; do not install image libraries or create thumbnails to inspect an image.",
+  "required": [
+   "file_path"
+  ],
+  "args": [
+   "file_path"
+  ]
+ },
+ {
+  "name": "send_message",
+  "description": "Send a message to an agent. A working agent receives it at its next step; an idle agent starts a new turn with it. Returns delivery confirmation, not the agent's answer.",
+  "required": [
+   "agent_id",
+   "message"
+  ],
+  "args": [
+   "agent_id",
+   "message"
+  ]
+ },
+ {
+  "name": "skill",
+  "description": "Load the full instructions for a skill. Call it before acting on a task that names or clearly matches a skill in the session skill catalog.",
+  "required": [
+   "name"
+  ],
+  "args": [
+   "name"
+  ]
+ },
+ {
+  "name": "subagent",
+  "description": "Delegate a self-contained task to a subagent (a separate agent that works in its own context) to offload focused, independent work — research, a scoped implementation, an analysis — so it does not consume this conversation's context. The subagent returns its result, not its intermediate steps. It runs in the background by default and returns a subagent id you can continue with `send_message`; you are notified when the run settles.",
+  "required": [
+   "description",
+   "prompt"
+  ],
+  "args": [
+   "description",
+   "prompt",
+   "run_in_background"
+  ]
+ },
+ {
+  "name": "subagent_fork",
+  "description": "Delegate a task to a subagent that inherits this conversation: a child agent seeded with all completed turns so far (it does not see the current in-flight turn). Use this when the subtask builds on this conversation's context — a follow-up analysis, a review, a continuation — without consuming this conversation's context for the work itself. You receive its result, not its intermediate steps. This call waits for the result by default.",
+  "required": [
+   "description",
+   "prompt"
+  ],
+  "args": [
+   "description",
+   "prompt",
+   "run_in_background"
+  ]
+ },
+ {
+  "name": "todo_write",
+  "description": "Record and update a task list to plan multi-step work and show progress; skip it for trivial single-step tasks. Add one todo per concrete step before you start. While work remains, keep the todos being worked on `in_progress`, several only when work runs in parallel. Mark each todo `completed` as soon as it is done.",
+  "required": [
+   "todos"
+  ],
+  "args": [
+   "todos"
+  ]
+ },
+ {
+  "name": "update_goal",
+  "description": "Update the current goal.",
+  "required": [
+   "goal_id",
+   "revision",
+   "action"
+  ],
+  "args": [
+   "goal_id",
+   "revision",
+   "action",
+   "objective",
+   "max_goal_rounds",
+   "blocked_reason"
+  ]
+ },
+ {
+  "name": "web_fetch",
+  "description": "Fetch the content of a specific HTTP(S) URL and return it decoded to text.",
+  "required": [
+   "url"
+  ],
+  "args": [
+   "url"
+  ]
+ },
+ {
+  "name": "web_search",
+  "description": "Search the web for current information. Returns an optional summary answer and a list of source URLs.",
+  "required": [
+   "queries"
+  ],
+  "args": [
+   "queries"
+  ]
+ },
+ {
+  "name": "workflow",
+  "description": "Run a JavaScript workflow script that orchestrates subagents at scale. Use this for work that fans out across many independent pieces — an audit over many files, a migration, multi-angle research, adversarial verification of findings — where you write the orchestration as a script instead of delegating turn by turn.\n\nScript-body hooks:\n- `agent(prompt, opts?): Promise<any>` — run one subagent to completion. Without `opts.schema` it resolves to the child's final text; with `opts.schema` (an object-rooted JSON Schema using ONLY type/properties/required/additionalProperties/items/enum/const/oneOf) it resolves to the validated object. Resolves `null` when the child fails (filter with `.filter(Boolean)`). Other opts: `label` (display), `phase` (progress group), and independent `provider`/`model` LLM target overrides.\n- `pipeline(items, ...stages): Promise<any[]>` — run each item through the stages independently with NO barrier between stages (prefer this for multi-stage work). Each stage receives `(prev, item, index)`. A stage throw drops that ITEM to `null` and skips its remaining stages.\n- `parallel(thunks): Promise<any[]>` — run zero-argument functions concurrently and await ALL of them (a barrier; use only when a stage genuinely needs every prior result together). A throwing thunk resolves to `null`.\n- `phase(title)` — start a progress phase; `log(message)` — narrate progress; `args` — the tool call's `args` input, verbatim.\n\nMisused hooks (bad arguments, unknown options, unsupported schemas, tripped caps) end the whole script instead of producing `null`. The script has no filesystem, network, timer, or Node.js APIs; the agents do the work.",
+  "required": [
+   "script",
+   "meta"
+  ],
+  "args": [
+   "script",
+   "meta",
+   "args",
+   "run_in_background"
+  ]
+ },
+ {
+  "name": "write",
+  "description": "Create or fully replace a UTF-8 text file.",
+  "required": [
+   "file_path",
+   "content"
+  ],
+  "args": [
+   "file_path",
+   "content",
+   "sandbox_permissions",
+   "justification"
+  ]
+ }
+]

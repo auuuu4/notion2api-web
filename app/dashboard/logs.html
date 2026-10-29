@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion-2API — 日志</title>
+<link rel="stylesheet" href="/dashboard/static/shared.css?v=20261029c">
+
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<div class="dashboard-layout">
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Notion-2API</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item" href="/dashboard" aria-label="概览"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>概览</span></a>
+    <a class="nav-item" href="/dashboard/accounts" aria-label="账户"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>账户</span></a>
+    <a class="nav-item active" href="/dashboard/logs" aria-label="日志"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>日志</span></a>
+    <a class="nav-item" href="/dashboard/analytics" aria-label="分析"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>分析</span></a>
+    <a class="nav-item" href="/dashboard/settings" aria-label="设置"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.54.76.9 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>设置</span></a>
+    <a class="nav-item" href="/dashboard/auto-register" aria-label="自动注册"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="21" x2="12" y2="11"/></svg><span>自动注册</span></a>
+  </nav>
+  <div class="sidebar-footer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="sidebarUptime">—</span></div>
+</div>
+<main class="main-content" id="main-content">
+  <div class="page-header"><h1>请求日志</h1>
+    <div style="display:flex;gap:8px">
+      <button class="btn" onclick="loadLogs()">刷新</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <select id="statusFilter" onchange="resetToFirstPage()">
+      <option value="">全部状态</option>
+      <option value="success">成功</option>
+      <option value="error">失败</option>
+      <option value="pending">等待中</option>
+    </select>
+    <select id="modelFilter" onchange="resetToFirstPage()"><option value="">全部模型</option></select>
+    <input type="text" class="input" id="searchInput" placeholder="搜索账号邮箱 / 名称 / 请求或响应内容" style="max-width:320px"
+           onkeydown="if(event.key==='Enter'){resetToFirstPage();}">
+    <button class="btn" onclick="resetToFirstPage()">搜索</button>
+    <button class="btn" onclick="clearFilters()">清空</button>
+    <span id="pageInfo" style="font-size:0.78rem;color:var(--text-secondary);font-family:var(--mono)"></span>
+  </div>
+
+  <div class="panel">
+    <div class="panel-body" style="padding:0">
+      <table class="log-table" id="logTable">
+        <thead><tr>
+          <th style="width:150px">时间</th><th style="width:150px">模型</th><th style="width:190px">账号邮箱</th>
+          <th>请求预览</th><th style="width:220px">响应预览</th><th style="width:80px">耗时</th>
+          <th style="width:90px">状态</th><th style="width:70px">操作</th>
+        </tr></thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pagination" id="pagination"></div>
+
+  <div class="log-modal" id="logDetailModal" style="display:none">
+    <div class="log-modal-body">
+      <div class="log-modal-title">请求详情 <button class="btn" onclick="closeLogDetail()" style="float:right">关闭</button></div>
+      <div id="logDetailContent" style="font-size:0.88rem;line-height:1.7"></div>
+    </div>
+  </div>
+</main>
+
+<div class="detail-modal" id="detailModal" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-content">
+    <div class="detail-header"><h3>请求详情</h3><button class="btn" onclick="closeDetail()">关闭</button></div>
+    <div class="detail-body" id="detailBody"></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="/dashboard/static/shared.js?v=20261029c"></script>
+<script>
+var pageSize = 20;
+var currentPage = 1;
+var totalPages = 1;
+var totalCount = 0;
+var modelsLoaded = false;
+
+function resetToFirstPage() {
+  currentPage = 1;
+  loadLogs();
+}
+
+function clearFilters() {
+  document.getElementById('statusFilter').value = '';
+  document.getElementById('modelFilter').value = '';
+  document.getElementById('searchInput').value = '';
+  resetToFirstPage();
+}
+
+async function loadModels() {
+  if (modelsLoaded) return;
+  try {
+    var data = await apiFetch('/api/models');
+    var models = (data.data || []).map(function(m) { return m.id; }).filter(Boolean);
+    (data.known || []).forEach(function(m) { if (models.indexOf(m) < 0) models.push(m); });
+    var sel = document.getElementById('modelFilter');
+    models.forEach(function(m) {
+      if (!sel.querySelector('option[value="' + m + '"]')) {
+        var opt = document.createElement('option'); opt.value = m; opt.textContent = m; sel.appendChild(opt);
+      }
+    });
+    modelsLoaded = true;
+  } catch (e) {}
+}
+
+async function loadLogs() {
+  await loadModels();
+  try {
+    var status = document.getElementById('statusFilter').value;
+    var model = document.getElementById('modelFilter').value;
+    var search = document.getElementById('searchInput').value.trim();
+    var offset = (currentPage - 1) * pageSize;
+    var url = '/api/logs?limit=' + pageSize + '&offset=' + offset;
+    if (status) url += '&status=' + encodeURIComponent(status);
+    if (model) url += '&model=' + encodeURIComponent(model);
+    if (search) url += '&search=' + encodeURIComponent(search);
+    var data = await apiFetch(url);
+    totalCount = data.total || 0;
+    totalPages = data.total_pages || 1;
+    if (currentPage > totalPages) { currentPage = totalPages; return loadLogs(); }
+    renderRows(data.results || []);
+    renderPagination();
+    document.getElementById('pageInfo').textContent = '共 ' + totalCount + ' 条 · 第 ' + currentPage + ' / ' + totalPages + ' 页';
+  } catch (e) {}
+}
+
+function renderRows(rows) {
+  var body = document.getElementById('logBody');
+  if (!rows.length) {
+    body.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text-secondary);padding:24px">暂无日志</td></tr>';
+    return;
+  }
+  var html = '';
+  rows.forEach(function(r) {
+    var statusClass = r.status === 'success' ? 'active' : (r.status === 'error' ? 'error' : '');
+    var response = r.response_preview || '';
+    if (response.length > 70) response = response.slice(0, 70) + '…';
+    var errorHint = r.error ? ('<div style="color:var(--error);font-size:0.7rem">' + escHtml(String(r.error).slice(0, 60)) + '</div>') : '';
+    html += '<tr>' +
+      '<td style="font-family:var(--mono);font-size:0.72rem">' + escHtml(String(r.timestamp || '').replace('T', ' ').slice(0, 19)) + '</td>' +
+      '<td style="font-family:var(--mono);font-size:0.72rem">' + escHtml(r.model || '—') + '</td>' +
+      '<td style="font-family:var(--mono);font-size:0.72rem">' + escHtml(r.account_email || '—') + '</td>' +
+      '<td>' + escHtml(r.content_preview || '—') + errorHint + '</td>' +
+      '<td style="font-size:0.78rem">' + escHtml(response || '—') + '</td>' +
+      '<td style="font-family:var(--mono);font-size:0.72rem">' + (r.duration_ms != null ? (r.duration_ms + 'ms') : '—') + '</td>' +
+      '<td><span class="status-badge ' + statusClass + '">' + escHtml(statusLabel(r.status)) + '</span></td>' +
+      '<td><button class="btn" onclick="openLogDetail(\'' + r.id + '\')">详情</button></td>' +
+      '</tr>';
+  });
+  body.innerHTML = html;
+}
+
+function renderPagination() {
+  var el = document.getElementById('pagination');
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+  var html = '';
+  html += '<button class="page-btn" onclick="gotoPage(1)" ' + (currentPage === 1 ? 'disabled' : '') + '>«</button>';
+  html += '<button class="page-btn" onclick="gotoPage(' + (currentPage - 1) + ')" ' + (currentPage === 1 ? 'disabled' : '') + '>‹</button>';
+  var start = Math.max(1, currentPage - 2);
+  var end = Math.min(totalPages, start + 4);
+  start = Math.max(1, end - 4);
+  if (start > 1) html += '<span class="page-ellipsis">…</span>';
+  for (var p = start; p <= end; p++) {
+    html += '<button class="page-btn ' + (p === currentPage ? 'active' : '') + '" onclick="gotoPage(' + p + ')">' + p + '</button>';
+  }
+  if (end < totalPages) html += '<span class="page-ellipsis">…</span>';
+  html += '<button class="page-btn" onclick="gotoPage(' + (currentPage + 1) + ')" ' + (currentPage === totalPages ? 'disabled' : '') + '>›</button>';
+  html += '<button class="page-btn" onclick="gotoPage(' + totalPages + ')" ' + (currentPage === totalPages ? 'disabled' : '') + '>»</button>';
+  el.innerHTML = html;
+}
+
+function gotoPage(page) {
+  if (page < 1 || page > totalPages || page === currentPage) return;
+  currentPage = page;
+  loadLogs();
+}
+
+async function openLogDetail(id) {
+  try {
+    var row = await apiFetch('/api/logs/' + id);
+    var content = document.getElementById('logDetailContent');
+    var response = row.response_content || '';
+    var html = '';
+    html += '<div><b>时间：</b>' + escHtml(String(row.timestamp || '').replace('T', ' ').slice(0, 19)) + '</div>';
+    html += '<div><b>模型：</b>' + escHtml(row.model || '—') + ' <span style="color:var(--text-secondary)">(' + escHtml(row.mapped_model || '') + ')</span></div>';
+    html += '<div><b>账号邮箱：</b>' + escHtml(row.account_email || '—') + '</div>';
+    html += '<div><b>账号 ID：</b><span style="font-family:var(--mono)">' + escHtml(row.account_id || '—') + '</span></div>';
+    html += '<div><b>状态：</b>' + escHtml(statusLabel(row.status)) + ' · <b>耗时：</b>' + (row.duration_ms != null ? row.duration_ms + 'ms' : '—') + '</div>';
+    if (row.error) html += '<div style="color:var(--error)"><b>错误：</b>' + escHtml(row.error) + '</div>';
+    html += '<div style="margin-top:10px"><b>请求：</b><pre class="log-pre">' + escHtml(row.content_preview || '—') + '</pre></div>';
+    html += '<div style="margin-top:10px"><b>响应：</b><pre class="log-pre">' + escHtml(response || '—') + '</pre></div>';
+    content.innerHTML = html;
+    document.getElementById('logDetailModal').style.display = 'flex';
+  } catch (e) { showToast('加载详情失败', 'error'); }
+}
+
+function closeLogDetail() {
+  document.getElementById('logDetailModal').style.display = 'none';
+}
+
+loadLogs();
+setInterval(loadLogs, 15000);
+</script>
+</body>
+</html>

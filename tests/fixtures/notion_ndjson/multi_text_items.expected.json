@@ -1,0 +1,15 @@
+{
+  "visible_text": "第一段\n\n第二段",
+  "final_text": "第一段\n\n第二段",
+  "record_map_text": "第一段\n\n第二段",
+  "saw_record_map": true,
+  "parsed_records": 4,
+  "thinking_chars": 4,
+  "unknown_op_count": 0,
+  "mismatch": null,
+  "quota": null,
+  "reducer_since_ms": null,
+  "native_extract": null,
+  "native_calls": null,
+  "provider_usage": null
+}

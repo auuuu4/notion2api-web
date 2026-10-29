@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion-2API — 分析</title>
+<link rel="stylesheet" href="/dashboard/static/shared.css?v=20261029c">
+</head>
+<body>
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<div class="dashboard-layout">
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <span>Notion-2API</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item" href="/dashboard" aria-label="概览"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>概览</span></a>
+    <a class="nav-item" href="/dashboard/accounts" aria-label="账户"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>账户</span></a>
+    <a class="nav-item" href="/dashboard/logs" aria-label="日志"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>日志</span></a>
+    <a class="nav-item active" href="/dashboard/analytics" aria-label="分析"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>分析</span></a>
+    <a class="nav-item" href="/dashboard/settings" aria-label="设置"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.54.76.9 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>设置</span></a>
+    <a class="nav-item" href="/dashboard/auto-register" aria-label="自动注册"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5"/><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="21" x2="12" y2="11"/></svg><span>自动注册</span></a>
+  </nav>
+  <div class="sidebar-footer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="sidebarUptime">—</span></div>
+</div>
+<main class="main-content" id="main-content">
+  <div class="page-header"><h1>数据分析</h1><span style="font-size:0.72rem;color:var(--text-secondary);font-family:var(--mono)" id="lastRefresh">—</span></div>
+
+  <!-- KPI row -->
+  <div class="stats-grid">
+    <div class="kpi-card"><span class="kpi-label">总请求数</span><span class="kpi-value" id="kpiTotal">0</span><span class="kpi-sub" id="kpiTotalSub"></span></div>
+    <div class="kpi-card"><span class="kpi-label">成功率</span><span class="kpi-value" id="kpiSuccess">—</span><span class="kpi-sub" id="kpiSuccessSub"></span></div>
+    <div class="kpi-card"><span class="kpi-label">平均延迟</span><span class="kpi-value" id="kpiLatency">—</span><span class="kpi-sub" id="kpiLatencySub"></span></div>
+    <div class="kpi-card"><span class="kpi-label">总 Token (估算)</span><span class="kpi-value" id="kpiTokens">0</span><span class="kpi-sub" id="kpiTokensSub"></span></div>
+  </div>
+
+  <!-- Charts row 1: Timeline + Model Donut -->
+  <div class="chart-row">
+    <div class="chart-panel">
+      <div class="chart-header"><span class="chart-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> 每小时请求</span></div>
+      <div class="chart-body" id="timelineBody"><div class="empty-state">暂无数据</div></div>
+    </div>
+    <div class="chart-panel">
+      <div class="chart-header"><span class="chart-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/></svg> 模型分布</span></div>
+      <div class="chart-body" id="donutBody"><div class="empty-state">暂无数据</div></div>
+    </div>
+  </div>
+
+  <!-- Charts row 2: Model table + Timing (full width for readable columns) -->
+  <div class="chart-row full">
+    <div class="chart-panel">
+      <div class="chart-header"><span class="chart-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg> 模型详情</span></div>
+      <div class="chart-body" style="padding:0;max-height:340px;overflow-y:auto" id="modelTableBody"><div class="empty-state">暂无数据</div></div>
+    </div>
+    <div class="chart-panel">
+      <div class="chart-header"><span class="chart-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 模型延迟</span></div>
+      <div class="chart-body" id="latencyBody"><div class="empty-state">暂无数据</div></div>
+    </div>
+  </div>
+
+  <!-- Account Usage -->
+  <div class="chart-row full">
+    <div class="chart-panel">
+      <div class="chart-header"><span class="chart-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> 账户状态</span></div>
+      <div class="chart-body">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+          <select id="accStatusFilter" onchange="applyAccountFilters()" style="padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-primary);color:var(--text-primary)">
+            <option value="">全部状态</option><option value="active">正常</option>
+            <option value="quota_exceeded">额度耗尽</option><option value="disabled">已禁用</option>
+          </select>
+          <select id="accSourceFilter" onchange="applyAccountFilters()" style="padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-primary);color:var(--text-primary)">
+            <option value="">全部来源</option><option value="auto">自动注册</option><option value="manual">手动添加</option>
+          </select>
+          <input type="text" id="accSearch" class="input" placeholder="搜索名称 / 邮箱" style="max-width:220px" oninput="applyAccountFilters()">
+        </div>
+        <div id="accountBody"><div class="empty-state">暂无账户</div></div>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<script src="/dashboard/static/shared.js?v=20261029c"></script>
+<script>
+var DONUT_COLORS = ['#5e9d5c','#4a90d9','#e8a838','#c96b6b','#9b6db5','#4abcb0','#d4765e','#6bb5c9','#b8a04a','#7a8db5','#c4788a','#5cb89a','#d98c5e','#8b7ec8','#4a9d7e','#c9a05c','#6a8ec9','#b86480','#5ab8a0','#c97a5a'];
+
+function fmtMs(ms) {
+  if (ms == null) return '—';
+  if (ms < 1000) return ms + 'ms';
+  return (ms / 1000).toFixed(1) + 's';
+}
+
+function fmtNum(n) {
+  if (n == null) return '0';
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+  return String(n);
+}
+
+async function refresh() {
+  try {
+    var stats = await apiFetch('/api/stats');
+    var ov = stats.overview || {};
+
+    // KPIs
+    setText('kpiTotal', fmtNum(ov.total_requests));
+    setText('kpiTotalSub', fmtNum(ov.success_count) + ' 成功 / ' + fmtNum(ov.error_count) + ' 失败');
+    setText('kpiSuccess', ov.success_rate + '%');
+    setText('kpiSuccessSub', ov.success_count + ' / ' + ov.total_requests);
+    setText('kpiLatency', fmtMs(ov.avg_duration_ms));
+    var models = stats.models || [];
+    var p95 = models.length > 0 ? Math.max.apply(null, models.map(function(m) { return m.p95_duration_ms || 0; })) : 0;
+    setText('kpiLatencySub', 'P95: ' + fmtMs(p95));
+    setText('kpiTokens', fmtNum(ov.total_prompt_tokens));
+    setText('kpiTokensSub', 'prompt token (分词估算)');
+
+    // Timeline
+    renderTimeline(stats.hourly || {});
+
+    // Donut
+    renderDonut(models);
+
+    // Model table
+    renderModelTable(models);
+
+    // Latency bars
+    renderLatency(models);
+
+    // Accounts
+    renderAccounts(stats.accounts || []);
+
+    setText('lastRefresh', '更新于 ' + new Date().toLocaleTimeString());
+  } catch(e) { console.error(e); }
+}
+
+function renderTimeline(hourly) {
+  var body = document.getElementById('timelineBody');
+  var counts = hourly.counts || [];
+  var errors = hourly.errors || [];
+  var maxVal = Math.max.apply(null, counts.concat([1]));
+  var html = '<div class="timeline-chart">';
+  for (var i = 0; i < 24; i++) {
+    var c = counts[i] || 0;
+    var e = errors[i] || 0;
+    var h = Math.round((c / maxVal) * 160);
+    var eh = Math.round((e / maxVal) * 160);
+    html += '<div class="timeline-bar">';
+    html += '<div class="tooltip">' + i + ':00 — ' + c + ' 请求' + (e > 0 ? ' (' + e + ' errors)' : '') + '</div>';
+    if (e > 0) {
+      html += '<div class="bar error" style="height:' + eh + 'px"></div>';
+    }
+    html += '<div class="bar success" style="height:' + Math.max(h - eh, 0) + 'px"></div>';
+    html += '<div class="hour-label">' + (i < 10 ? '0' : '') + i + '</div>';
+    html += '</div>';
+  }
+  html += '</div>';
+  body.innerHTML = html;
+}
+
+function renderDonut(models) {
+  var body = document.getElementById('donutBody');
+  var usedModels = models.filter(function(m) { return m.ever_used !== false && m.requests > 0; });
+  if (!usedModels.length) { body.innerHTML = '<div class="empty-state">暂无数据</div>'; return; }
+  var total = usedModels.reduce(function(s, m) { return s + m.requests; }, 0);
+  var r = 70, cx = 80, cy = 80, circ = 2 * Math.PI * r;
+  var offset = 0;
+  var paths = '';
+  var legend = '';
+  for (var i = 0; i < usedModels.length && i < 10; i++) {
+    var m = usedModels[i];
+    var pct = m.requests / total;
+    var dash = pct * circ;
+    var color = DONUT_COLORS[i % DONUT_COLORS.length];
+    paths += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="20" stroke-dasharray="' + dash + ' ' + (circ - dash) + '" stroke-dashoffset="' + (-offset) + '"/>';
+    offset += dash;
+    legend += '<div class="legend-item"><div class="legend-dot" style="background:' + color + '"></div><span class="legend-label">' + escHtml(m.model) + '</span><span class="legend-val">' + m.requests + '</span></div>';
+  }
+  body.innerHTML = '<div class="donut-container"><div class="donut-chart"><svg width="160" height="160">' + paths + '</svg><div class="donut-center"><div class="big">' + total + '</div><div class="small">requests</div></div></div><div class="donut-legend">' + legend + '</div></div>';
+}
+
+function renderModelTable(models) {
+  var body = document.getElementById('modelTableBody');
+  if (!models.length) { body.innerHTML = '<div class="empty-state">暂无数据</div>'; return; }
+  var html = '<table class="model-table"><thead><tr><th>模型</th><th>代号</th><th>请求数</th><th>错误</th><th>成功率</th><th>平均</th><th>P50</th><th>P95</th></tr></thead><tbody>';
+  for (var i = 0; i < models.length; i++) {
+    var m = models[i];
+    var rateW = Math.round(m.success_rate * 0.6);
+    var usedBadge = m.ever_used ? '' : ' <span style="font-size:0.6rem;background:var(--bg-elevated);padding:1px 5px;border-radius:3px;color:var(--text-secondary)">未使用</span>';
+    html += '<tr' + (m.ever_used ? '' : ' style="opacity:0.6"') + '>';
+    html += '<td style="color:var(--accent);font-weight:600">' + escHtml(m.model) + usedBadge + '</td>';
+    html += '<td style="font-size:0.68rem;color:var(--text-secondary)">' + escHtml(m.codename || m.display_name || '') + '</td>';
+    html += '<td>' + m.requests + '</td>';
+    html += '<td>' + (m.errors || 0) + '</td>';
+    html += '<td><span class="rate-bar green" style="width:' + rateW + 'px"></span> ' + m.success_rate + '%</td>';
+    html += '<td>' + fmtMs(m.avg_duration_ms) + '</td>';
+    html += '<td>' + fmtMs(m.p50_duration_ms) + '</td>';
+    html += '<td>' + fmtMs(m.p95_duration_ms) + '</td>';
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  body.innerHTML = html;
+}
+
+function renderLatency(models) {
+  var body = document.getElementById('latencyBody');
+  var usedModels = models.filter(function(m) { return m.ever_used !== false && m.requests > 0; });
+  if (!usedModels.length) { body.innerHTML = '<div class="empty-state">暂无数据</div>'; return; }
+  var maxDur = Math.max.apply(null, usedModels.map(function(m) { return m.p95_duration_ms || m.avg_duration_ms || 1; }));
+  var html = '<div class="bar-chart">';
+  for (var i = 0; i < usedModels.length; i++) {
+    var m = usedModels[i];
+    var avgW = Math.round((m.avg_duration_ms || 0) / maxDur * 100);
+    var p95W = Math.round((m.p95_duration_ms || 0) / maxDur * 100);
+    html += '<div class="bar-row">';
+    html += '<span class="bar-label" title="' + escHtml(m.model) + '">' + escHtml(m.model) + '</span>';
+    html += '<div class="bar-track">';
+    html += '<div class="bar-fill green" style="width:' + Math.max(avgW, 2) + '%">' + fmtMs(m.avg_duration_ms) + '</div>';
+    html += '</div>';
+    html += '<span class="bar-count">P95 ' + fmtMs(m.p95_duration_ms) + '</span>';
+    html += '</div>';
+  }
+  html += '</div>';
+  body.innerHTML = html;
+}
+
+var analyticsAccounts = [];
+function renderAccounts(accounts) {
+  analyticsAccounts = accounts || [];
+  applyAccountFilters();
+}
+
+function applyAccountFilters() {
+  var body = document.getElementById('accountBody');
+  var status = document.getElementById('accStatusFilter') ? document.getElementById('accStatusFilter').value : '';
+  var source = document.getElementById('accSourceFilter') ? document.getElementById('accSourceFilter').value : '';
+  var query = document.getElementById('accSearch') ? (document.getElementById('accSearch').value || '').trim().toLowerCase() : '';
+  var accounts = analyticsAccounts.filter(function(a) {
+    if (status && a.status !== status) return false;
+    if (source === 'auto' && !a.auto_registered) return false;
+    if (source === 'manual' && a.auto_registered) return false;
+    if (query) {
+      var haystack = [a.user_name, a.user_email].filter(Boolean).join(' ').toLowerCase();
+      if (haystack.indexOf(query) < 0) return false;
+    }
+    return true;
+  });
+  if (!accounts.length) { body.innerHTML = '<div class="empty-state">没有匹配的账户</div>'; return; }
+  var totalReqs = accounts.reduce(function(s, a) { return s + (a.total_requests || 0); }, 0);
+  var html = '<table style="width:100%"><thead><tr><th>名称</th><th>邮箱</th><th>请求</th><th>状态</th><th>来源</th><th>创建时间</th></tr></thead><tbody>';
+  for (var i = 0; i < accounts.length; i++) {
+    var a = accounts[i];
+    var badgeClass = a.status === 'active' ? 'active' : 'error';
+    html += '<tr>' +
+      '<td>' + escHtml(a.user_name || '—') + '</td>' +
+      '<td style="font-family:var(--mono);font-size:0.72rem">' + escHtml(a.user_email || '—') + '</td>' +
+      '<td style="font-family:var(--mono)">' + (a.total_requests || 0) + '</td>' +
+      '<td><span class="status-badge ' + badgeClass + '">' + escHtml(statusLabel(a.status)) + '</span></td>' +
+      '<td>' + escHtml(sourceLabel(a)) + '</td>' +
+      '<td style="font-family:var(--mono);font-size:0.72rem">' + (a.created_at ? new Date(a.created_at).toLocaleDateString() : '—') + '</td>' +
+      '</tr>';
+  }
+  html += '</tbody></table>';
+  html += '<div style="padding:8px 0;font-size:0.75rem;color:var(--text-secondary);font-family:var(--mono)">筛选后 ' + accounts.length + ' 个账户 · 共 ' + totalReqs + ' 次请求</div>';
+  body.innerHTML = html;
+}
+
+refresh();
+setInterval(refresh, 10000);
+</script>
+</body>
+</html>

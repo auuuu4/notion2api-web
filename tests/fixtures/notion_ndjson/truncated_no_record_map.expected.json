@@ -1,0 +1,15 @@
+{
+  "visible_text": "## 半截正文，没有 record-map 结尾",
+  "final_text": "## 半截正文，没有 record-map 结尾",
+  "record_map_text": "",
+  "saw_record_map": false,
+  "parsed_records": 3,
+  "thinking_chars": 8,
+  "unknown_op_count": 0,
+  "mismatch": null,
+  "quota": null,
+  "reducer_since_ms": null,
+  "native_extract": null,
+  "native_calls": null,
+  "provider_usage": null
+}
